@@ -69,9 +69,12 @@ import {
   
   const Product = ({item}) => {
     return (
+      <>
+      <h1>Youy Designs</h1>
       <Container>
+
         <Circle />
-        <Image src={`http://localhost:8000${item.image}`}  alt={"Image of Product"}/>
+        <Image src={`https://bishellapi.herokuapp.com${item.image}`}  alt={"Image of Product"}/>
         <Info>
           <Icon>
             <ShoppingCartOutlined />
@@ -84,6 +87,7 @@ import {
           </Icon>
         </Info>
       </Container>
+      </>
     );
   };
   

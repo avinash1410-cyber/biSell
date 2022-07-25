@@ -7,9 +7,19 @@ import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import Slider from "../components/Slider";
 
+
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
+import ProtectedPage from "../views/ProtectedPage";
+
+
 const Home = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <div>
+      <h1>HOME</h1>
+      <ProtectedPage/>
       <Announcement />
       <Navbar />
       <Slider />

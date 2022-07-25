@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Navbar from './Navbar';
 
 class Upload extends Component {
 
@@ -26,7 +27,7 @@ class Upload extends Component {
     let form_data = new FormData();
     form_data.append('image', this.state.image, this.state.image.name);
     form_data.append('design', this.state.design);
-    let url = 'http://127.0.0.1:8000/artist/addData/';
+    let url = 'https://bishellapi.herokuapp.com/artist/addData/';
     axios.post(url, form_data, {
       headers: {
         'content-type': 'multipart/form-data'
@@ -40,7 +41,9 @@ class Upload extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+        <Navbar/>
+        <div className="App">
         <form onSubmit={this.handleSubmit}>
           <p>
             <input type="text" placeholder='Design' id='design' value={this.state.title} onChange={this.handleChange} required/>
@@ -52,6 +55,8 @@ class Upload extends Component {
           </p>
           <input type="submit"/>
         </form>
+      </div>
+      <h1>Add Design</h1>
       </div>
     );
   }

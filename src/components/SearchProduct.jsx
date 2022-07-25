@@ -26,7 +26,7 @@ export default function SearchProduct() {
 
   useEffect(() => {
     axios
-    .get(`http://127.0.0.1:8000/search/${id}`)
+    .get(`https://bishellapi.herokuapp.com/search/${id}`)
     .then((res) => {
       console.log(res.data);
       setProducts(res.data);

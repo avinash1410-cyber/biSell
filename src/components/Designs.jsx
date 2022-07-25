@@ -7,6 +7,10 @@ import axios from 'axios';
 import DesignView from '../pages/DesignView';
 
 
+const Image = styled.img`
+height: 75%;
+z-index: 2;
+`;
 
 const Container = styled.div`
     padding: 20px;
@@ -23,7 +27,7 @@ useEffect(() => {
   }, []);
 const fetchProducts = () => {
     axios
-      .get('http://127.0.0.1:8000/design/')
+      .get('https://bishellapi.herokuapp.com/design/')
       .then((res) => {
         console.log(res);
         setProducts(res.data);
@@ -35,9 +39,16 @@ const fetchProducts = () => {
 
   return (
     <Container>
-      {products.map((item) => (
-        <DesignView item={item} key={item.id} name={item.name}  />
-      ))}
+          <h1>Designs Avilable</h1>
+      {
+        products.map((item) => (
+        <div>
+            <Image src={`http://localhost:8000${item.image}`}  alt={"Image of Product"} width="600px" height="600px"/>
+        </div>
+        ))
+      
+      
+      }
     </Container>
   );
 };

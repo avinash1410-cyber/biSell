@@ -15,17 +15,20 @@ const Container = styled.div`
 `;
 
 const Products = () => {
+  var [count, setCount] = useState(0);
 
   const [products, setProducts] = useState([]);
 useEffect(() => {
     fetchProducts();
   }, []);
+
 const fetchProducts = () => {
     axios
-      .get('http://127.0.0.1:8000/')
+      .get('http://bishellapi.herokuapp.com/')
       .then((res) => {
         console.log(res);
         setProducts(res.data);
+        console.log(products); 
       })
       .catch((err) => {
         console.log(err);
@@ -36,11 +39,17 @@ const fetchProducts = () => {
 
 
   return (
+    <div>
+      <h1>Our Products</h1>
     <Container>
-      {products.map((item) => (
+      {
+      products.map((item) => (
         <Product item={item} key={item.id} name={item.name}  />
       ))}
     </Container>
+    <Link to="/product">see more</Link>
+    </div>
+
   );
 };
 

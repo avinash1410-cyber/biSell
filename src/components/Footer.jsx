@@ -1,6 +1,7 @@
 import {
   Facebook,
   Instagram,
+  LinkedIn,
   MailOutline,
   Phone,
   Pinterest,
@@ -89,25 +90,32 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>LAMA.</Logo>
+        <Logo>About</Logo>
         <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+        Ocean Of Cloths. Emerging platform for creative minds and aspiring models.
         </Desc>
         <SocialContainer>
-          <SocialIcon color="3B5999">
-            <Facebook />
-          </SocialIcon>
-          <SocialIcon color="E4405F">
-            <Instagram />
-          </SocialIcon>
-          <SocialIcon color="55ACEE">
-            <Twitter />
-          </SocialIcon>
-          <SocialIcon color="E60023">
-            <Pinterest />
-          </SocialIcon>
+          
+            <a href="https://www.facebook.com/cloceanindia/">
+            <SocialIcon color="3B5999"><Facebook />
+            </SocialIcon>
+            </a>
+          
+
+            <a href="https://instagram.com/">
+            <SocialIcon color="E4405F"><Instagram />
+            </SocialIcon></a>
+          
+
+          <a href="https://twitter.com/Clocean_in">
+          <SocialIcon color="55ACEE"><Twitter /></SocialIcon>
+          </a>
+          
+          
+            <a href="https://www.linkedin.com/company/clocean-private-limited/">
+            <SocialIcon color="E60023"><LinkedIn />
+            </SocialIcon></a>
+          
         </SocialContainer>
       </Left>
       <Center>

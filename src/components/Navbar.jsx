@@ -8,9 +8,8 @@ import {
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-
-
-
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 
 
@@ -82,11 +81,19 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+const Image = styled.img`
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  ${mobile({ height: "40vh" })}
+`;
+
+
 const Navbar = () => {
 
 
 
-
+  const { logoutUser } = useContext(AuthContext);
   const [i, setSearch] = useState();
   const[Product, setProduct]=useState();
   const nav = useNavigate();
@@ -108,33 +115,36 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Language>EN</Language>
+
+        <button onClick={logoutUser}>LOGOUT</button>
+       
           <SearchContainer>
               <Input type="text" onChange={e => setSearch(e.target.value)} placeholder="search"/>
               <Button onClick={handleSubmit}>Search</Button>
           </SearchContainer>
         </Left>
+        <Image src="logo.png" alt="LOGO"/>
         <Center>
-          <Link to="/"><Logo>LAMA.</Logo></Link>
+          <Link to="/"><Logo>Clocean</Logo></Link>
         </Center>
         <Right>
           <MenuItem><Link to="/register">REGISTER</Link></MenuItem>
           <MenuItem><Link to="/login">SIGN IN</Link></MenuItem>
           
           <MenuItem>
-          <Link to="/cart"><Badge badgeContent={4} color="primary">
+          <Link to="/cart"><Badge color="primary">
               <ShoppingCartOutlined />
             </Badge>
           </Link>
           </MenuItem>
           <MenuItem>
-          <Link to="/order"><Badge color="primary">
+          <Link to="/order"><Badge badgeContent={'Orders'} color="primary">
               <AccountCircleOutlined />
             </Badge>
           </Link> 
           </MenuItem>
           <MenuItem>
-          <Link to="/artist"><Badge badgeContent={'Artist'} color="primary">
+          <Link to="/artist"><Badge badgeContent={'Earn Money'} color="primary">
               <AccountCircleOutlined />
             </Badge>
           </Link> 

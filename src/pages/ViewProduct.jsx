@@ -7,9 +7,10 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import axios from "axios";
-import React, { useState, useEffect } from 'react';
-
-
+import React, { useState, useEffect, useContext } from 'react';
+import useAxios from '../utils/useAxios'
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 
 const Container = styled.div``;
@@ -123,20 +124,51 @@ const Button = styled.button`
 
 
 function ViewProduct(){
+  const[Item,setItem]=useState(0);
   const{id}=useParams();
-  console.log(id);
+  console.log({id});
+  const api = useAxios();
+  const nav = useNavigate();
   const [product, setProduct] = useState(null);
+  const {user}=useContext(AuthContext);
 
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/${id}`)
+    axios.get(`https://bishellapi.herokuapp.com/${id}`)
     .then((res)=>{
         setProduct(res.data);
         console.log(res.data);
-        console.log(product);
     }).catch((err)=>{
         console.log(err);
     })
   },[]);
+
+
+
+
+
+  function incr()
+  {
+  let item=Item+1;
+  setItem(item);
+  }
+  
+  function dcr()
+  {
+  let item=Item-1;
+  setItem(item);
+  }
+
+  function addcart(){
+    const res=api.get(`/cart/addData/${id}`);
+    nav("/cart");
+  }
+
+
+
+
+  function addPay(){
+    nav(`/pay/${id}`,{state:{productid:id,amount:product.price,product_name:product.name}});
+  }
 
 
   return (
@@ -145,13 +177,19 @@ function ViewProduct(){
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src={`http://localhost:8000${product === null ? 'loading' : product.image}`} />
+          <Image src={`http://bishellapi.herokuapp.com${product === null ? 'loading' : product.image}`} alt="Product Image"/>
         </ImgContainer>
         <InfoContainer>
           <Title>{product === null ? 'loading' : product.name}</Title>
           <Desc>
           In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
           </Desc>
+          {/* <Desc>
+            Artist:{product.artist.cust === null ? 'loading' : product.artist.cust.user.username}
+          </Desc>
+          <Desc>
+            Category:{product.cat === null ? 'loading' : product.cat.name}
+          </Desc> */}
           <Price>$ {product === null ? 'loading' : product.price}</Price>
           <FilterContainer>
             <Filter>
@@ -171,14 +209,16 @@ function ViewProduct(){
               </FilterSize>
             </Filter>
           </FilterContainer>
+          
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={dcr}/>
+              <Amount>{Item}</Amount>
+              <Add onClick={incr}/>
             </AmountContainer>
-            <Link to="/cart"><Button>ADD TO CART</Button></Link>
-            <Link to="/order"><Button>Order Now  </Button></Link>
+            <Button onClick={addcart}>ADD TO CART</Button>
+            <Button onClick={addPay}>Order Now </Button>
+            {/* <Link to={`/pay/${item.id}`}> <LocalShipping /></Link> */}
           </AddContainer>
         </InfoContainer>
       </Wrapper>

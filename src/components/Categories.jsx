@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
-    axios.get("http://127.0.0.1:8000/category/available/")
+    axios.get("https://bishellapi.herokuapp.com/category/available/")
     .then((res)=>{
       setCategories(res.data);
     }).catch((err)=>{
@@ -30,11 +30,16 @@ const Categories = () => {
 
   
   return (
-    <Container>
+    <div>
+        <h1>Available categories</h1>
+    <Container>      
       {categories.map((item) => (
         <CategoryItem item={item} key={item.id} />
       ))}
     </Container>
+    <br></br>
+    <Link to="/category">seeMore</Link>
+    </div>
   );
 };
 

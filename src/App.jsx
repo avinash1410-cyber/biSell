@@ -18,12 +18,26 @@ import ArtistPage from "./components/ArtistPage";
 import Upload from "./components/ArtistPage";
 import Designs from "./components/Designs";
 
+import { AuthProvider } from "./context/AuthContext";
+//import Home from "./views/homePage";
+//import Login from "./views/loginPage";
+//import Register from "./views/registerPage";
+import ProtectedPage from "./views/ProtectedPage";
+import { PaytmButton } from "./components/PaytmButton";
+
+
+
 const App = () => {
   return (
     <>
 
   <BrowserRouter>
-    <Routes>   
+
+
+
+  <AuthProvider>
+    <Routes> 
+      <Route path="/protected" element={<ProtectedPage/>}/>   
       <Route path="/" element={<Home/>} />
       <Route path="search/:id" element={<SearchProduct/>} />
       <Route path="login/" element={<Login />} />
@@ -35,8 +49,12 @@ const App = () => {
       <Route path="product/:id" element={<ViewProduct/>} />
       <Route path="product/" element={<ProductList />} />
       <Route path="category/" element={<Categories />} />
+      <Route path="category/:id" element={<CategoryProduct />} />
       <Route path="designs/" element={<Designs/>} />
+      <Route path="pay/:id" element={<PaytmButton/>} />
     </Routes>
+
+    </AuthProvider>
   </BrowserRouter>
   </>
   );

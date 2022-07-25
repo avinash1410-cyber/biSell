@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import {mobile} from "../responsive";
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 
 
@@ -69,31 +70,23 @@ const Login = () => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const nav = useNavigate();
-
+  const { loginUser } = useContext(AuthContext);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    axios.post('http://127.0.0.1:8000/account/login/',{"username":username,"password":password})
-    .then(res => {
-      if(res.data.message==="Login done"){
-        nav("/");
-      }
-      else{
-        nav("/login");
-      }
-    });
+    username.length > 0 && loginUser(username, password);
   };
 
   return (
     <Container>
       <Wrapper>
-        <Title>SIGN IN</Title>
+        <Title>LOG IN</Title>
         <Form>
         <Input type="text" onChange={e => setUserName(e.target.value)} placeholder="username" />
         <Input type="password" onChange={e => setPassword(e.target.value)} placeholder="password" />
           <Button onClick={handleSubmit}>LOGIN</Button>
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link to="/register">CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

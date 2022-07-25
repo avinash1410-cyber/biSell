@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   SearchOutlined,
   LocalShipping,
@@ -5,6 +6,7 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
 
 const Info = styled.div`
   opacity: 0;
@@ -67,33 +69,25 @@ const Icon = styled.div`
   }
 `;
 
-const Product = ({item}) => {
+export default function OrderItems({item}) {
   return (
 
-
-    <Link to={`/product/${item.id}`}>
-      <Container>
-      <Circle />
-
-      <Image src={`http://bishellapi.herokuapp.com${item === null ? 'loading' : item.image}`} alt="Product Image"/>
-      
-      
-     
-      <Info>
-        <Icon>
-        <Link to="order/"><ShoppingCartOutlined/></Link>
-        </Icon>
-        <Icon>
-        <Link to="cart/"><SearchOutlined /></Link>
-        </Icon>
-        <Icon>
-        <Link to={`/product/${item.id}`}> <LocalShipping /></Link>
-        </Icon>
-      </Info>
-    </Container>
-    </Link>
-
-  );
-};
-
-export default Product;
+<>
+    <Container>
+    <Circle />
+    <Image src={`http://bishellapi.herokuapp.com${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
+    <Info>
+      <Icon>
+        <ShoppingCartOutlined />
+      </Icon>
+      <Icon>
+        <SearchOutlined />
+      </Icon>
+      <Icon>
+      <Link to={`/product/${item.id}`}> <LocalShipping /></Link>
+      </Icon>
+    </Info>
+  </Container>  
+</>
+  )
+}

@@ -27,7 +27,7 @@ useEffect(() => {
   }, []);
 const fetchProducts = () => {
     axios
-      .get('https://bishellapi.herokuapp.com/design/')
+      .get('https://avi8654340.pythonanywhere.com/design/')
       .then((res) => {
         console.log(res);
         setProducts(res.data);

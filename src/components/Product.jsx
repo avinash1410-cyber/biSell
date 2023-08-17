@@ -75,8 +75,7 @@ const Product = ({item}) => {
       <Container>
       <Circle />
 
-      <Image src={`http://bishellapi.herokuapp.com${item === null ? 'loading' : item.image}`} alt="Product Image"/>
-      
+      <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
       
      
       <Info>

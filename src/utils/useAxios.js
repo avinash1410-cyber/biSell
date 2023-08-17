@@ -6,7 +6,7 @@ import AuthContext from "../context/AuthContext";
 
 // http://localhost:8000/
 
-const baseURL = "https://bishellapi.herokuapp.com/";
+const baseURL = "http://localhost:8000/";
 
 const useAxios = () => {
   const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);

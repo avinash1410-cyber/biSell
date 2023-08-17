@@ -1,65 +1,48 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Navbar from './Navbar';
+import {React,useState,useEffect,useContext} from 'react'
+import useAxios from '../utils/useAxios';
+import styled from "styled-components";
+import Navbar from '../components/Navbar';
 
-class Upload extends Component {
 
-  state = {
-    design: '',
-    image: null
-  };
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
-  };
 
-  handleImageChange = (e) => {
-    this.setState({
-      image: e.target.files[0]
-    })
-  };
+export default function ArtistPage() {
+  const api=useAxios();
+  const [Artists, setArtists] = useState([]);
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state);
-    let form_data = new FormData();
-    form_data.append('image', this.state.image, this.state.image.name);
-    form_data.append('design', this.state.design);
-    let url = 'https://bishellapi.herokuapp.com/artist/addData/';
-    axios.post(url, form_data, {
-      headers: {
-        'content-type': 'multipart/form-data'
-      }
-    })
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(err => console.log(err))
-  };
+  useEffect(() => {
+    async function fetchData(){
+      fetch('https://avi8654340.pythonanywhere.com/artist/', {
+        // mode: 'no-cors',
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+        },
+      },
+      ).then(response => {
+        if (response.ok) {
+          response.json().then(json => {
+            console.log(json);
+            setArtists(json)
+          });
+        }
+      });   
+    };
+    fetchData();
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <Navbar/>
-        <div className="App">
-        <form onSubmit={this.handleSubmit}>
-          <p>
-            <input type="text" placeholder='Design' id='design' value={this.state.title} onChange={this.handleChange} required/>
-          </p>
-          <p>
-            <input type="file"
-                   id="image"
-                   accept="image/png, image/jpeg"  onChange={this.handleImageChange} required/>
-          </p>
-          <input type="submit"/>
-        </form>
-      </div>
-      <h1>Add Design</h1>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <center><Navbar></Navbar></center>
+      <h1><center>Here is The list of our super Artists</center></h1>
+      {Artists.length > 0 && (
+        <ul>
+          {Artists.map(Artist => (
+            <li key={Artist.id}>{Artist.cust.user.username}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+
 }
-
-export default Upload;

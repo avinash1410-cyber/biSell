@@ -63,7 +63,7 @@ const CategoryItem = ({item}) => {
   return (
     <Container>
       <ImgContainer>
-            <Image src={`https://bishellapi.herokuapp.com${item === null ? 'loading' : item.image}`} height="400px"/>
+            <Image src={`http://127.0.0.1:8000${item === null ? 'loading' : item.image}`} height="400px"/>
       </ImgContainer>
       <Info>
         <Button onClick={handleClick}>SHOP NOW</Button>

@@ -26,7 +26,7 @@ export default function SearchProduct() {
 
   useEffect(() => {
     axios
-    .get(`https://bishellapi.herokuapp.com/search/${id}`)
+    .get(`https://avi8654340.pythonanywhere.com/search/${id}`)
     .then((res) => {
       console.log(res.data);
       setProducts(res.data);

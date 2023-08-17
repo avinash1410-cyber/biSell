@@ -123,9 +123,8 @@ const Navbar = () => {
               <Button onClick={handleSubmit}>Search</Button>
           </SearchContainer>
         </Left>
-        <Image src="logo.png" alt="LOGO"/>
         <Center>
-          <Link to="/"><Logo>Clocean</Logo></Link>
+          <Link to="/"><Logo>A2Z</Logo></Link>
         </Center>
         <Right>
           <MenuItem><Link to="/register">REGISTER</Link></MenuItem>
@@ -144,7 +143,7 @@ const Navbar = () => {
           </Link> 
           </MenuItem>
           <MenuItem>
-          <Link to="/artist"><Badge badgeContent={'Earn Money'} color="primary">
+          <Link to="/artist"><Badge badgeContent={'Artists'} color="primary">
               <AccountCircleOutlined />
             </Badge>
           </Link> 

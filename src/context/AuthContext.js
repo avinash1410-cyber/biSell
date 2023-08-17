@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   const history = useNavigate();
 
   const loginUser = async (username, password) => {
-    const response = await fetch("https://bishellapi.herokuapp.com/api/token/", {
+    const response = await fetch("https://avi8654340.pythonanywhere.com/api/token/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

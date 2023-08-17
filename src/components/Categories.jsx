@@ -18,7 +18,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
-    axios.get("https://bishellapi.herokuapp.com/category/available/")
+    axios.get("https://avi8654340.pythonanywhere.com/category/available/")
     .then((res)=>{
       setCategories(res.data);
     }).catch((err)=>{

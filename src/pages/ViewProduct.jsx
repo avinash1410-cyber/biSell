@@ -133,7 +133,7 @@ function ViewProduct(){
   const {user}=useContext(AuthContext);
 
   useEffect(()=>{
-    axios.get(`https://bishellapi.herokuapp.com/${id}`)
+    axios.get(`https://avi8654340.pythonanywhere.com/${id}`)
     .then((res)=>{
         setProduct(res.data);
         console.log(res.data);
@@ -177,7 +177,7 @@ function ViewProduct(){
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src={`http://bishellapi.herokuapp.com${product === null ? 'loading' : product.image}`} alt="Product Image"/>
+          <Image src={`https://avi8654340.pythonanywhere.com/${product === null ? 'loading' : product.image}`} alt="Product Image"/>
         </ImgContainer>
         <InfoContainer>
           <Title>{product === null ? 'loading' : product.name}</Title>
@@ -195,6 +195,7 @@ function ViewProduct(){
             <Filter>
               <FilterTitle>Color</FilterTitle>
               <FilterColor color="black" />
+              <FilterColor color="red" />
               <FilterColor color="darkblue" />
               <FilterColor color="gray" />
             </Filter>

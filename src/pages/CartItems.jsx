@@ -75,7 +75,7 @@ export default function CartItems({item}) {
 <>
     <Container>
     <Circle />
-    <Image src={`http://127.0.0.1:8000${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
+    <Image src={`https://avi8654340.pythonanywhere.com${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
     <Info>
       <Icon>
         <ShoppingCartOutlined />

@@ -74,21 +74,7 @@ const Product = ({item}) => {
     <Link to={`/product/${item.id}`}>
       <Container>
       <Circle />
-
       <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
-      
-     
-      <Info>
-        <Icon>
-        <Link to="order/"><ShoppingCartOutlined/></Link>
-        </Icon>
-        <Icon>
-        <Link to="cart/"><SearchOutlined /></Link>
-        </Icon>
-        <Icon>
-        <Link to={`/product/${item.id}`}> <LocalShipping /></Link>
-        </Icon>
-      </Info>
     </Container>
     </Link>
 

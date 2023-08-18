@@ -79,7 +79,7 @@ export function PaytmButton () {
     // finally submit that form
     frm.submit();
 
-    // if you remember, the param_dict also has "'CALLBACK_URL': 'https://avi8654340.pythonanywhere.com/api/handlepayment/'"
+    // if you remember, the param_dict also has "'CALLBACK_URL': 'http://127.0.0.1:8000/api/handlepayment/'"
     // so as soon as Paytm gets the payment it will hit that callback URL with some response and
     // on the basis of that response we are displaying the "payment successful" or "failed" message
   };
@@ -104,7 +104,7 @@ export function PaytmButton () {
     };
     console.log(body);
     await Axios({
-      url: 'https://avi8654340.pythonanywhere.com/paytm/pay/',
+      url: 'http://127.0.0.1:8000/paytm/pay/',
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -143,7 +143,7 @@ export function PaytmButton () {
   //   form_data.append('userid', user.user_id);
   //   form_data.append('productid', location.state.productid.id);
   //   form_data.append('address', address);
-  //   let url = 'https://avi8654340.pythonanywhere.com/paytm/pay/';
+  //   let url = 'http://127.0.0.1:8000/paytm/pay/';
   //   await axios.post(url, form_data, {
   //     headers: {
   //       'content-type': 'multipart/form-data'

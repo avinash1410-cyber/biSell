@@ -4,13 +4,8 @@ import { popularProducts } from "../data";
 import Product from "./Product";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import DesignView from '../pages/DesignView';
 
 
-const Image = styled.img`
-height: 75%;
-z-index: 2;
-`;
 
 const Container = styled.div`
     padding: 20px;
@@ -20,36 +15,42 @@ const Container = styled.div`
 `;
 
 const Designs = () => {
+  var [count, setCount] = useState(0);
 
   const [products, setProducts] = useState([]);
 useEffect(() => {
     fetchProducts();
   }, []);
+
 const fetchProducts = () => {
     axios
-      .get('https://avi8654340.pythonanywhere.com/design/')
+      .get('http://127.0.0.1:8000/')
       .then((res) => {
         console.log(res);
         setProducts(res.data);
+        console.log(products); 
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+
+
+
   return (
+    <div>
+      <h1>Our Products</h1>
     <Container>
-          <h1>Designs Avilable</h1>
       {
-        products.map((item) => (
-        <div>
-            <Image src={`http://localhost:8000${item.image}`}  alt={"Image of Product"} width="600px" height="600px"/>
-        </div>
-        ))
-      
-      
-      }
+      products.map((item) => (
+        <Product item={item} key={item.id} name={item.name}  />
+      ))}
     </Container>
+    <Link to="/product">see more</Link>
+    </div>
+
   );
 };
+
 export default Designs;

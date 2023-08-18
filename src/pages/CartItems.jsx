@@ -2,7 +2,7 @@ import React from 'react';
 import {
   SearchOutlined,
   LocalShipping,
-  ShoppingCartOutlined,
+  RemoveShoppingCart,
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -70,15 +70,17 @@ const Icon = styled.div`
   }
 `;
 
+
+
 export default function CartItems({item}) {
   return (
 <>
     <Container>
     <Circle />
-    <Image src={`https://avi8654340.pythonanywhere.com${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
+    <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
     <Info>
       <Icon>
-        <ShoppingCartOutlined />
+        <RemoveShoppingCart />
       </Icon>
       <Icon>
         <SearchOutlined />

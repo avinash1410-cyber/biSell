@@ -11,6 +11,7 @@ import Slider from "../components/Slider";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import ProtectedPage from "../views/ProtectedPage";
+import Artists from "../components/Artists";
 
 
 const Home = () => {
@@ -25,6 +26,7 @@ const Home = () => {
       <Slider />
       <Categories />
       <Products/>
+      <Artists/>
       <Newsletter/>
       <Footer/>
     </div>

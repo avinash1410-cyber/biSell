@@ -24,7 +24,7 @@ useEffect(() => {
 
 const fetchProducts = () => {
     axios
-      .get('https://avi8654340.pythonanywhere.com/')
+      .get('http://127.0.0.1:8000/')
       .then((res) => {
         console.log(res);
         setProducts(res.data);

@@ -18,15 +18,15 @@ const Container = styled.div`
 
 
 
-function CategoryProduct(){
-  const [products, setProducts] = useState([]);
+function ArtistDesigns(){
+  const [designs, setDesigns] = useState([]);
   const{id}=useParams();
   console.log(id);
 
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/category/${id}`)
+    axios.get(`http://127.0.0.1:8000/artist/${id}/designs`)
     .then((res)=>{
-      setProducts(res.data);
+        setDesigns(res.data);
         console.log(res);
     }).catch((err)=>{
         console.log(err);
@@ -39,15 +39,13 @@ function CategoryProduct(){
     <>
     <Navbar></Navbar>
     <Container>
-      {products.map((item) => (
+      {designs.map((item) => (
         <Product item={item} key={item.id} name={item.name}  />
       ))}
     </Container>
     </>
   );
 
-
-
 }
 
-export default CategoryProduct;
+export default ArtistDesigns;

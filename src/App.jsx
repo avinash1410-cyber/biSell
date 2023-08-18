@@ -14,8 +14,13 @@ import Categories from "./components/Categories";
 import CategoryProduct from "./components/CategoryProduct";
 import SearchProduct from "./components/SearchProduct";
 import Order from "./pages/Order";
-import ArtistPage from "./components/ArtistPage";
-import Upload from "./components/ArtistPage";
+
+import ArtistProfile from "./pages/ArtistProfile";
+import Upload from "./pages/ArtistProfile";
+import Artists from "./components/Artists";
+
+import ArtistDesigns from "./components/ArtistDesigns";
+
 import Designs from "./components/Designs";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -43,13 +48,20 @@ const App = () => {
       <Route path="login/" element={<Login />} />
       <Route path="cart/" element={<Cart />} />
       <Route path="order/" element={<Order />} />
-      <Route path="artist/" element={<ArtistPage />} />
+
+      <Route path="artist/" element={<Artists />} />
+      <Route path="artist/:id" element={<ArtistProfile />} />
+
       <Route path="addData/" element={<Upload />} />
       <Route path="register/" element={<Register />} />
       <Route path="product/:id" element={<ViewProduct/>} />
       <Route path="product/" element={<ProductList />} />
       <Route path="category/" element={<Categories />} />
+
       <Route path="category/:id" element={<CategoryProduct />} />
+      <Route path="artist/:id/designs" element={<ArtistDesigns />} />
+
+
       <Route path="designs/" element={<Designs/>} />
       <Route path="pay/:id" element={<PaytmButton/>} />
     </Routes>

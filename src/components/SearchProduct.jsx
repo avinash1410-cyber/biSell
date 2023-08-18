@@ -26,7 +26,7 @@ export default function SearchProduct() {
 
   useEffect(() => {
     axios
-    .get(`https://avi8654340.pythonanywhere.com/search/${id}`)
+    .get(`http://127.0.0.1:8000/search/${id}`)
     .then((res) => {
       console.log(res.data);
       setProducts(res.data);

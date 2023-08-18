@@ -18,7 +18,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
-    axios.get("https://avi8654340.pythonanywhere.com/category/available/")
+    axios.get("http://127.0.0.1:8000/category/available/")
     .then((res)=>{
       setCategories(res.data);
     }).catch((err)=>{

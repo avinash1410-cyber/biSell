@@ -1,12 +1,11 @@
-import React from 'react';
 import {
   SearchOutlined,
   LocalShipping,
   ShoppingCartOutlined,
+  Category,
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 
 const Info = styled.div`
   opacity: 0;
@@ -69,25 +68,17 @@ const Icon = styled.div`
   }
 `;
 
-export default function OrderItems({item}) {
+const ArtistItem = ({item}) => {
   return (
 
-<>
-    <Container>
-    <Circle />
-    <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
-    <Info>
-      <Icon>
-        <ShoppingCartOutlined />
-      </Icon>
-      <Icon>
-        <SearchOutlined />
-      </Icon>
-      <Icon>
-      <Link to={`/product/${item.id}`}> <LocalShipping /></Link>
-      </Icon>
-    </Info>
-  </Container>  
-</>
-  )
-}
+
+    <Link to={`/artist/${item.id}`}>
+      <Container>
+      <Circle />
+      <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
+    </Container>
+    </Link>
+  );
+};
+
+export default ArtistItem;

@@ -11,6 +11,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import useAxios from '../utils/useAxios'
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import Product from "../components/Product";
 
 
 const Container = styled.div``;
@@ -26,8 +27,7 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 90vh;
+  height: 50vh;
   object-fit: cover;
   ${mobile({ height: "40vh" })}
 `;
@@ -116,6 +116,7 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
+  margin-right: 10px;
 
   &:hover{
       background-color: #f8f4f4;
@@ -125,110 +126,58 @@ const Button = styled.button`
 
 function ViewProduct(){
   const[Item,setItem]=useState(0);
+  const[Design,setDesign]=useState(0);
   const{id}=useParams();
   console.log({id});
   const api = useAxios();
   const nav = useNavigate();
-  const [product, setProduct] = useState(null);
+  const [artist, setArtist] = useState(null);
   const {user}=useContext(AuthContext);
 
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/${id}`)
+    axios.get(`http://127.0.0.1:8000/artist/${id}`)
     .then((res)=>{
-        setProduct(res.data);
+        setArtist(res.data);
         console.log(res.data);
     }).catch((err)=>{
         console.log(err);
     })
   },[]);
 
-
-
-
-
-  function incr()
-  {
-  let item=Item+1;
-  setItem(item);
-  }
-  
-  function dcr()
-  {
-  let item=Item-1;
-  setItem(item);
-  }
-
-  function addcart(){
-    const res=api.get(`/cart/addData/${id}`);
-    nav("/cart");
-  }
-
-
-
-
-  function addPay(){
-    nav(`/pay/${id}`,{state:{productid:id,amount:product.price,product_name:product.name}});
-  }
-
-
   return (
+    <>
+
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
+      <Link to={`/artist/${id}/designs`}>
         <ImgContainer>
-          <Image src={`https://res.cloudinary.com/dh9lxhvqt/${product === null ? 'loading' : product.image}`} alt="Product Image"/>
+          <Image src={`https://res.cloudinary.com/dh9lxhvqt/${artist === null ? 'loading' : artist.image}`} alt="Artist Image"/>
         </ImgContainer>
+        </Link>
         <InfoContainer>
-          <Title>{product === null ? 'loading' : product.name}</Title>
+          <Title>Name   :{artist === null ? 'loading' : artist.cust.user.username}</Title>
+          <Title>Contact No   :{artist === null ? 'loading' : artist.cust.phone}</Title>
+          <Title>Current City    :{artist === null ? 'loading' : artist.cust.add}</Title>
+          <Title>Buiseness Email Id    :{artist === null ? 'loading' : artist.cust.email}</Title>
           <Desc>
-          In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
+            <Link to={`/artist/${id}/designs`}>
+              <Button>My Designs</Button>
+            </Link>
+            <Link to={`/artist/${id}/designs`}>
+              <Button>My Designs</Button>
+            </Link>
           </Desc>
-          {/* <Desc>
-            Artist:{product.artist.cust === null ? 'loading' : product.artist.cust.user.username}
-          </Desc>
-          <Desc>
-            Category:{product.cat === null ? 'loading' : product.cat.name}
-          </Desc> */}
-          <Price>$ {product === null ? 'loading' : product.price}</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="red" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
-          
-          <AddContainer>
-            <AmountContainer>
-              <Remove onClick={dcr}/>
-              <Amount>{Item}</Amount>
-              <Add onClick={incr}/>
-            </AmountContainer>
-            <Button onClick={addcart}>ADD TO CART</Button>
-            <Button onClick={addPay}>Order Now </Button>
-            {/* <Link to={`/pay/${item.id}`}> <LocalShipping /></Link> */}
-          </AddContainer>
         </InfoContainer>
       </Wrapper>
+
       <Newsletter />
       <Footer />
     </Container>
+    
+    </>
     )
-  
-                    // <Link to={`/buy/${product === null ? '' : product.id}`} className="btn btn-dark">Buy</Link>
     
 };
 

@@ -23,3 +23,23 @@ class DesignProductsAPIView(APIView):
             products=Products.objects.filter(design=design)
             data=ProductSerializer(products,many=True)
             return Response(data.data)
+        
+
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import DesignSerilaizer
+
+@api_view(['POST'])
+def upload_design(request):
+    if request.method == 'POST':
+        serializer = DesignSerilaizer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Design uploaded successfully.', 'data': serializer.data})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+

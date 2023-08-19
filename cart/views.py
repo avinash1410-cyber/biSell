@@ -8,6 +8,10 @@ from .models import Cart
 from .serializers import CartSerializer
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view
+
+
+
 
 
 class CartAPIView(APIView):
@@ -42,3 +46,12 @@ class AddDataAPIView(APIView):
             return redirect("MyCart")
         else:
             return Response({"Message":"First Made an Acoount"})
+        
+
+
+@api_view(['GET'])
+def DeleteFromCart(request,pk=None):
+    print(pk)
+    item = Cart.objects.get(id=pk)
+    item.delete()
+    return Response({'message': "Your Cart Item Has Been Deleted"})

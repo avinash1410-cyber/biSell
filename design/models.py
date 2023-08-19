@@ -6,4 +6,4 @@ from cloudinary.models import CloudinaryField
 class Design(models.Model):
     design=models.CharField(max_length=100,null=True,blank=True)
     artist=models.ForeignKey(Artist,on_delete=models.CASCADE,null=True,blank=True)
-    image=CloudinaryField('image')
+    image=CloudinaryField('image',null=True,blank=True)

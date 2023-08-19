@@ -60,7 +60,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Register = () => {
+const Contact = () => {
 
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
@@ -100,25 +100,20 @@ const Register = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
+        <Title>Send Your Message</Title>
         <Form>
-          <Input type="text" onChange={e => setAddress(e.target.value)} placeholder="DELHI" />
-          <Input type="text" onChange={e => setUserName(e.target.value)} placeholder="username" />
-          <Input type="email" onChange={e => setEmail(e.target.value)} placeholder="avi****@gmail.com" />
-          <Input type="password" onChange={e => setPassword(e.target.value)} placeholder="password" />
-          <Input type="text" onChange={e => setPhone(e.target.value)} placeholder="+91 7827******" />
-          <Agreement>
-            By creating an account, I consent to the processing of my personal
-            data in accordance with the <b>PRIVACY POLICY</b>
-          </Agreement>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Input type="text" onChange={e => setAddress(e.target.value)} placeholder="Your Message" />
+          <Input type="text" onChange={e => setUserName(e.target.value)} placeholder="Your Name" />
+          <Input type="email" onChange={e => setEmail(e.target.value)} placeholder="Designer Email Id" />
+          <Input type="password" onChange={e => setPassword(e.target.value)} placeholder="Your Email Id" />
+          <Input type="text" onChange={e => setPhone(e.target.value)} placeholder="Your Contact No" />
+            <p>Your Message will be send to designer in sort period of time</p>
+          <br></br>
+          <Link to="/"><h1>Submit</h1></Link>
         </Form>
-        <Link to="/login">Already Have An Account</Link>
-        <br></br>
-        <Link to="/">Continue As Anonymous user</Link>
       </Wrapper>
     </Container>
   );
 };
 
-export default Register;
+export default Contact;

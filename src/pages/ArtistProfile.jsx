@@ -162,11 +162,14 @@ function ViewProduct(){
           <Title>Current City    :{artist === null ? 'loading' : artist.cust.add}</Title>
           <Title>Buiseness Email Id    :{artist === null ? 'loading' : artist.cust.email}</Title>
           <Desc>
-            <Link to={`/artist/${id}/designs`}>
-              <Button>My Designs</Button>
+            <Link to="/contact">
+              <Button>CONTACT</Button>
             </Link>
             <Link to={`/artist/${id}/designs`}>
               <Button>My Designs</Button>
+            </Link>
+            <Link to="/design/upload">
+              <Button>Add Design</Button>
             </Link>
           </Desc>
         </InfoContainer>

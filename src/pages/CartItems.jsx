@@ -7,6 +7,9 @@ import {
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Navbar from '../components/Navbar';
+import useAxios from '../utils/useAxios';
+import { useNavigate } from "react-router-dom";
+
 
 
 const Info = styled.div`
@@ -72,7 +75,22 @@ const Icon = styled.div`
 
 
 
+
+
 export default function CartItems({item}) {
+
+  const api = useAxios();
+  const nav = useNavigate();
+
+  function handleLinkClick(){
+    console.log("Request for delete")
+    const res=api.get(`/cart/remove/${item.id}/`);
+    nav("/cart");
+  }
+
+
+
+
   return (
 <>
     <Container>
@@ -80,13 +98,13 @@ export default function CartItems({item}) {
     <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
     <Info>
       <Icon>
-        <RemoveShoppingCart />
-      </Icon>
+        <RemoveShoppingCart onClick={handleLinkClick}/>
+      </Icon>      
       <Icon>
         <SearchOutlined />
       </Icon>
       <Icon>
-      <Link to={`/product/${item.id}`}> <LocalShipping /></Link>
+      <LocalShipping />
       </Icon>
     </Info>
   </Container>

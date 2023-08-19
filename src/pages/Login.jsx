@@ -1,8 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import {mobile} from "../responsive";
 import React, { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
@@ -57,12 +56,6 @@ const Button = styled.button`
   margin-bottom: 10px;
 `;
 
-const Link = styled.a`
-  margin: 5px 0px;
-  font-size: 12px;
-  text-decoration: underline;
-  cursor: pointer;
-`;
 
 const Login = () => {
 
@@ -85,9 +78,12 @@ const Login = () => {
         <Input type="text" onChange={e => setUserName(e.target.value)} placeholder="username" />
         <Input type="password" onChange={e => setPassword(e.target.value)} placeholder="password" />
           <Button onClick={handleSubmit}>LOGIN</Button>
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link to="/register">CREATE A NEW ACCOUNT</Link>
         </Form>
+        <Link to="/register">Create New Account</Link>
+        <br></br>
+        <Link to="/register">Forget Password</Link>
+        <br></br>
+        <Link to="/">Continue As Anonymous user</Link>
       </Wrapper>
     </Container>
   );

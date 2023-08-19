@@ -14,22 +14,15 @@ import Categories from "./components/Categories";
 import CategoryProduct from "./components/CategoryProduct";
 import SearchProduct from "./components/SearchProduct";
 import Order from "./pages/Order";
-
 import ArtistProfile from "./pages/ArtistProfile";
-import Upload from "./pages/ArtistProfile";
-import Artists from "./components/Artists";
-
+import ArtistsPage from "./components/ArtistsPage";
 import ArtistDesigns from "./components/ArtistDesigns";
-
 import Designs from "./components/Designs";
-
 import { AuthProvider } from "./context/AuthContext";
-//import Home from "./views/homePage";
-//import Login from "./views/loginPage";
-//import Register from "./views/registerPage";
 import ProtectedPage from "./views/ProtectedPage";
 import { PaytmButton } from "./components/PaytmButton";
-
+import Contact from "./pages/Contact";
+import Upload from "./pages/Upload";
 
 
 const App = () => {
@@ -49,7 +42,7 @@ const App = () => {
       <Route path="cart/" element={<Cart />} />
       <Route path="order/" element={<Order />} />
 
-      <Route path="artist/" element={<Artists />} />
+      <Route path="artist/" element={<ArtistsPage />} />
       <Route path="artist/:id" element={<ArtistProfile />} />
 
       <Route path="addData/" element={<Upload />} />
@@ -64,6 +57,12 @@ const App = () => {
 
       <Route path="designs/" element={<Designs/>} />
       <Route path="pay/:id" element={<PaytmButton/>} />
+
+      
+      <Route path="contact/" element={<Contact/>} />
+      <Route path="/design/upload/" element={<Upload/>} />
+
+
     </Routes>
 
     </AuthProvider>

@@ -74,7 +74,7 @@ import {
       <Container>
 
         <Circle />
-        <Image src={`http://127.0.0.1:8000/${item.image}`}  alt={"Image of Product"}/>
+        <Image src={`https://avi8654340.pythonanywhere.com/${item.image}`}  alt={"Image of Product"}/>
         <Info>
           <Icon>
             <ShoppingCartOutlined />

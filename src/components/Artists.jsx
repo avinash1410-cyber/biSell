@@ -20,7 +20,7 @@ const Artists = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
-    axios.get("http://127.0.0.1:8000/artist/")
+    axios.get("https://avi8654340.pythonanywhere.com/artist/")
     .then((res)=>{
       setCategories(res.data);
     }).catch((err)=>{

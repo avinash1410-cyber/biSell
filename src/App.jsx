@@ -44,8 +44,6 @@ const App = () => {
 
       <Route path="artist/" element={<ArtistsPage />} />
       <Route path="artist/:id" element={<ArtistProfile />} />
-
-      <Route path="addData/" element={<Upload />} />
       <Route path="register/" element={<Register />} />
       <Route path="product/:id" element={<ViewProduct/>} />
       <Route path="product/" element={<ProductList />} />

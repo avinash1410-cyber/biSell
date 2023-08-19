@@ -135,7 +135,7 @@ function ViewProduct(){
   const {user}=useContext(AuthContext);
 
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/artist/${id}`)
+    axios.get(`https://avi8654340.pythonanywhere.com/artist/${id}`)
     .then((res)=>{
         setArtist(res.data);
         console.log(res.data);

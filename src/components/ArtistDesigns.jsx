@@ -24,7 +24,7 @@ function ArtistDesigns(){
   console.log(id);
 
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:8000/artist/${id}/designs`)
+    axios.get(`https://avi8654340.pythonanywhere.com/artist/${id}/designs`)
     .then((res)=>{
         setDesigns(res.data);
         console.log(res);

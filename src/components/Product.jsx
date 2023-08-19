@@ -75,6 +75,17 @@ const Product = ({item}) => {
       <Container>
       <Circle />
       <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
+      <Info>
+      <Icon>
+        <ShoppingCartOutlined/>
+      </Icon>      
+      <Icon>
+        <SearchOutlined />
+      </Icon>
+      <Icon>
+      <LocalShipping />
+      </Icon>
+    </Info>
     </Container>
     </Link>
 

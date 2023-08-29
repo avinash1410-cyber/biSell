@@ -14,9 +14,11 @@ import ProtectedPage from "../views/ProtectedPage";
 import Artists from "../components/Artists";
 
 
+
 const Home = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
+  
   return (
     <div>
       <h1>HOME</h1>

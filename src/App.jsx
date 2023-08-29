@@ -25,14 +25,13 @@ import Contact from "./pages/Contact";
 import Upload from "./pages/Upload";
 
 
+import AnotherPage from "./pages/AnotherPage";
+
+
 const App = () => {
   return (
     <>
-
   <BrowserRouter>
-
-
-
   <AuthProvider>
     <Routes> 
       <Route path="/protected" element={<ProtectedPage/>}/>   
@@ -60,6 +59,8 @@ const App = () => {
       <Route path="contact/" element={<Contact/>} />
       <Route path="/design/upload/" element={<Upload/>} />
 
+      <Route path="another/" element={<AnotherPage/>} />
+      <Route path="protected/" element={<ProtectedPage/>} />
 
     </Routes>
 

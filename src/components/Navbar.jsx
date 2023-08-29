@@ -1,5 +1,5 @@
 import { Badge, Button } from "@material-ui/core";
-import { Search, ShoppingCartOutlined,AccountCircleOutlined } from "@material-ui/icons";
+import { Search, ShoppingCartOutlined,AccountCircleOutlined, ShoppingBasket, Palette } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import {
@@ -10,10 +10,6 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-
-
-
-
 
 
 
@@ -93,7 +89,7 @@ const Navbar = () => {
 
 
 
-  const { logoutUser } = useContext(AuthContext);
+  const { logoutUser,user } = useContext(AuthContext);
   const [i, setSearch] = useState();
   const[Product, setProduct]=useState();
   const nav = useNavigate();
@@ -114,10 +110,7 @@ const Navbar = () => {
   return (
     <Container>
       <Wrapper>
-        <Left>
-
-        <button onClick={logoutUser}>LOGOUT</button>
-       
+        <Left>       
           <SearchContainer>
               <Input type="text" onChange={e => setSearch(e.target.value)} placeholder="search"/>
               <Button onClick={handleSubmit}>Search</Button>
@@ -127,27 +120,63 @@ const Navbar = () => {
           <Link to="/"><Logo>A2Z</Logo></Link>
         </Center>
         <Right>
-          <MenuItem><Link to="/register">REGISTER</Link></MenuItem>
-          <MenuItem><Link to="/login">SIGN IN</Link></MenuItem>
+
+          {user ? (
+          <Link to="/" onClick={logoutUser} >LOGOUT</Link>
+      ) : (
+        <>
+        <MenuItem>
+          <Link to="/register">REGISTER</Link> 
+        </MenuItem>
+
+        <MenuItem>
+          <Link to="/login">SIGN IN</Link> 
+        </MenuItem>
+        </>
+        
+        
+      )}
+
+
+
+
+
+
+
+    {user ? (<>
+            <MenuItem>
+                <Link to="/cart"><Badge color="primary"><ShoppingCartOutlined /></Badge></Link>
+            </MenuItem>
+
+            <MenuItem>
+                <Link to="/order"><Badge color="primary"><ShoppingBasket /></Badge></Link> 
+            </MenuItem>
+
+            <MenuItem>
+                <Link to="/artist"><Badge color="primary"><Palette /></Badge></Link> 
+            </MenuItem>
+        </>
+          ) : (
+            <>
+            </>
+          )}
+
+
+
+
+
+
+
+
+
+
+
+
           
-          <MenuItem>
-          <Link to="/cart"><Badge color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
-          </Link>
-          </MenuItem>
-          <MenuItem>
-          <Link to="/order"><Badge badgeContent={'Orders'} color="primary">
-              <AccountCircleOutlined />
-            </Badge>
-          </Link> 
-          </MenuItem>
-          <MenuItem>
-          <Link to="/artist"><Badge badgeContent={'Artists'} color="primary">
-              <AccountCircleOutlined />
-            </Badge>
-          </Link> 
-          </MenuItem>
+
+
+
+
         </Right>
       </Wrapper>
     </Container>

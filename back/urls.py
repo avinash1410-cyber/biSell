@@ -20,17 +20,13 @@ static_urlpatterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
-    path('category/', include('category.urls')),
-    path('artist/', include('artist.urls')),
     path('',include('product.urls')),
     path('cart/',include('cart.urls')),
     path('order/',include('order.urls')),
-    path('design/',include('design.urls')),
     path('api/token/',jwt_views.TokenObtainPairView.as_view(),name ='token_obtain_pair'),
     path('api/token/refresh/',jwt_views.TokenRefreshView.as_view(),name ='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path("", include(static_urlpatterns)),
-    path('paytm/', include('paytm.urls')),
 ]
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # to import static in deployment

@@ -3,9 +3,10 @@ from cloudinary.models import CloudinaryField
 
 class Products(models.Model):
     name = models.CharField(max_length=60)
+    description= models.CharField(max_length=200)
     price = models.IntegerField(default=0)
     image=CloudinaryField('image',null=True,blank=True)
-    size=models.CharField(max_length=10,null=True,blank=True)
+    stocks=models.CharField(max_length=10,null=True,blank=True)
     @property
     def get_all_products(self):
         return Products.objects.all()

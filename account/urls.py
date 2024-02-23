@@ -3,4 +3,5 @@ from account.views import *
 
 urlpatterns = [
     path('register/',register_page),
+    path('dashboard/',dashboard_page),
 ]

@@ -16,5 +16,6 @@ def register_page(request):
             add=address,
             phone=phone,
         )
+        cust.save()
         return Response({"message":"Registration done"})
     return Response({"username":"","password":"","email":"","phone":"","add":""})

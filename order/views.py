@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 class OrderAPIView(APIView):
-    permission_classes=[IsAuthenticated]
+
     def get(self, request, pk=None, format=None):
         if pk:
             print(pk)
@@ -27,7 +27,7 @@ class OrderAPIView(APIView):
 
 
 class AddDataAPIView(APIView):
-    permission_classes=[IsAuthenticated]
+    
     def get(self, request, pk=None, format=None):
         cust=Customer.objects.get(user=request.user)
         if cust!=None:

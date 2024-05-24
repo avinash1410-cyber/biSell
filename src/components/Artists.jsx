@@ -20,7 +20,7 @@ const Artists = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
-    axios.get("https://avi8654340.pythonanywhere.com/artist/")
+    axios.get("https://avinash8654340.pythonanywhere.com/artist/")
     .then((res)=>{
       setCategories(res.data);
     }).catch((err)=>{

@@ -24,7 +24,7 @@ function CategoryProduct(){
   console.log(id);
 
   useEffect(()=>{
-    axios.get(`https://avi8654340.pythonanywhere.com/category/${id}`)
+    axios.get(`https://avinash8654340.pythonanywhere.com/category/${id}`)
     .then((res)=>{
       setProducts(res.data);
         console.log(res);

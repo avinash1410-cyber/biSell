@@ -24,7 +24,7 @@ useEffect(() => {
 
 const fetchProducts = () => {
     axios
-      .get('https://avi8654340.pythonanywhere.com/')
+      .get('https://avinash8654340.pythonanywhere.com/')
       .then((res) => {
         console.log(res);
         setProducts(res.data);

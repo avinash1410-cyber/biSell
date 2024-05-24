@@ -24,7 +24,7 @@ function ArtistDesigns(){
   console.log(id);
 
   useEffect(()=>{
-    axios.get(`https://avi8654340.pythonanywhere.com/artist/${id}/designs`)
+    axios.get(`https://avinash8654340.pythonanywhere.com/artist/${id}/designs`)
     .then((res)=>{
         setDesigns(res.data);
         console.log(res);

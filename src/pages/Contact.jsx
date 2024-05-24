@@ -74,7 +74,7 @@ const Contact = () => {
     e.preventDefault();
     console.log(username);
     console.log(password);
-    axios.post('https://avi8654340.pythonanywhere.com/account/register/',{"username":username,"password":password,"phone":phone,"add":add,"email":email})
+    axios.post('https://avinash8654340.pythonanywhere.com/account/register/',{"username":username,"password":password,"phone":phone,"add":add,"email":email})
     .then(res => {
       if(res.data.message==="Registration done"){
         nav("/login");

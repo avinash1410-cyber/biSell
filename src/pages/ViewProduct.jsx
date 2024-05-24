@@ -127,7 +127,7 @@ function ViewProduct() {
 
   useEffect(() => {
     axios
-      .get(`https://avi8654340.pythonanywhere.com/${id}`)
+      .get(`https://avinash8654340.pythonanywhere.com/${id}`)
       .then((res) => {
         setProduct(res.data);
         setDefaultImage(res.data.image);

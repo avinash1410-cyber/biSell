@@ -14,22 +14,22 @@ const Container = styled.div`
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  const fetchProducts = () => {
-    axios
-      .get('https://avinash8654340.pythonanywhere.com/')
-      .then((res) => {
-        console.log(res);
-        setProducts(res.data);
-        console.log(products); 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   useEffect(() => {
+    const fetchProducts = () => {
+      axios
+        .get('https://avinash8654340.pythonanywhere.com/')
+        .then((res) => {
+          console.log(res);
+          setProducts(res.data);
+          console.log(res.data); 
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
     fetchProducts();
-  }, [fetchProducts]); // No dependency needed here
+  }, []); // No dependency needed here
 
   return (
     <div>

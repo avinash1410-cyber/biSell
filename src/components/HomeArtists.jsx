@@ -11,13 +11,6 @@ const Container = styled.div`
   ${mobile({ padding: "0px", flexDirection: "column" })}
 `;
 
-const Text = styled.span`
-  color: #fff; /* White text color for better visibility */
-  font-size: 24px; /* Increased font size for better readability */
-  font-weight: bold; /* Bold font weight for emphasis */
-  text-transform: uppercase; /* Uppercase text for style */
-  letter-spacing: 2px; /* Increased letter spacing for better legibility */
-`;
 
 const HomeArtists = () => {
   const [categories, setCategories] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { Search, ShoppingCartOutlined, AccountCircleOutlined, ShoppingBasket, Palette, Notifications } from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -101,20 +101,7 @@ const Navbar = () => {
     }
   };
 
-  const handleEarnClick = async () => {
-    try {
-      const response = await api.get('https://avinash8654340.pythonanywhere.com/account/update/');
-      console.log(response);
-      alert(response.data.response);
-      navigate('/Earn');
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
 
-  const handleNotificationsClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleClose = () => {
     setAnchorEl(null);

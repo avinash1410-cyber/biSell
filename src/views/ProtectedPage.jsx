@@ -2,7 +2,7 @@ import React, {  useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../utils/useAxios";
 
-import { Typography, Box, Menu, MenuItem, IconButton } from '@mui/material';
+import { Typography, Box, MenuItem, IconButton } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styled from 'styled-components';
 import MovingText from "../components/MovingText";
@@ -25,19 +25,6 @@ const Text = styled(Typography)`
   color: #333;
 `;
 
-const StyledMenuItem = styled(MenuItem)`
-  && {
-    display: block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #333;
-    transition: background-color 0.3s;
-  }
-
-  &&:hover {
-    background-color: #f0f0f0;
-  }
-`;
 
 function ProtectedPage() {
   const [res, setRes] = useState("");
@@ -68,33 +55,6 @@ function ProtectedPage() {
     setAnchorEl(null);
   };
 
-  const handleOptionClick = (option) => {
-    // Handle option click here
-    if (option === 'add_money') {
-      // Add your logic for "Add Money" option here
-      console.log("Add Money selected");
-    } else if (option === 'watchlist') {
-      // Add your logic for "Watchlist" option here
-      console.log("Watchlist selected");
-    } else if (option === 'my_stocks') {
-      // Add your logic for "My Stocks" option here
-      console.log("My Stocks selected");
-    } else if (option === 'my_traders') {
-      // Add your logic for "My Traders" option here
-      console.log("My Traders selected");
-    } else if (option === 'custumer_support') {
-      // Add your logic for "Customer Support" option here
-      console.log("Customer Support selected");
-    } else if (option === 'setting') {
-      // Add your logic for "Settings" option here
-      console.log("Settings selected");
-    } else {
-      console.log("Unknown option selected");
-    }
-  
-    // Close the menu
-    handleMenuClose();
-  };
 
   return (
     <Container>

@@ -122,7 +122,6 @@ function ViewProduct() {
   const api = useAxios();
   const nav = useNavigate();
   const [product, setProduct] = useState(null);
-  const { user } = useContext(AuthContext);
   const [defaultImage, setDefaultImage] = useState(null);
 
   useEffect(() => {

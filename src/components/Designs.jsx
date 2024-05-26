@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -15,8 +14,6 @@ const Container = styled.div`
 `;
 
 const Designs = () => {
-  var [count, setCount] = useState(0);
-
   const [products, setProducts] = useState([]);
 useEffect(() => {
     fetchProducts();

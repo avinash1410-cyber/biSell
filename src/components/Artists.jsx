@@ -4,7 +4,7 @@ import { mobile } from "../responsive";
 import ArtistItem from "./ArtistItem";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+
 
 
 const Container = styled.div`

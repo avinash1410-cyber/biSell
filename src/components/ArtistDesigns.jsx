@@ -1,7 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { Link,useParams } from 'react-router-dom';
-import ProductList from '../pages/ProductList';
-import CategoryProductList from './CategoryProductList';
+
+import { useParams } from 'react-router-dom';
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import Product from "./Product";

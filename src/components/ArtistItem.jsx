@@ -46,31 +46,13 @@ const Image = styled.img`
   z-index: 2;
 `;
 
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  transition: all 0.5s ease;
-  &:hover {
-    background-color: #e9f5f5;
-    transform: scale(1.1);
-  }
-`;
-
-const ArtistItem = ({item}) => {
+const ArtistItem = ({ item }) => {
   return (
-
-
     <Link to={`/artist/${item.id}`}>
       <Container>
-      <Circle />
-      <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
-    </Container>
+        <Circle />
+        <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
+      </Container>
     </Link>
   );
 };

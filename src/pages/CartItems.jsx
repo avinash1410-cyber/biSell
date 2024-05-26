@@ -6,11 +6,8 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Navbar from '../components/Navbar';
 import useAxios from '../utils/useAxios';
 import { useNavigate } from "react-router-dom";
-
-
 
 const Info = styled.div`
   opacity: 0;
@@ -73,41 +70,31 @@ const Icon = styled.div`
   }
 `;
 
-
-
-
-
-export default function CartItems({item}) {
-
+export default function CartItems({ item }) {
   const api = useAxios();
   const nav = useNavigate();
 
-  function handleLinkClick(){
-    console.log("Request for delete")
-    const res=api.get(`/cart/remove/${item.id}/`);
+  async function handleLinkClick() {
+    console.log("Request for delete");
+    await api.get(`/cart/remove/${item.id}/`);
     nav("/cart");
   }
 
-
-
-
   return (
-<>
     <Container>
-    <Circle />
-    <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
-    <Info>
-      <Icon>
-        <RemoveShoppingCart onClick={handleLinkClick}/>
-      </Icon>      
-      <Icon>
-        <SearchOutlined />
-      </Icon>
-      <Icon>
-      <LocalShipping />
-      </Icon>
-    </Info>
-  </Container>
-  </>
-  )
+      <Circle />
+      <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item.product === null ? 'loading' : item.product.image}`} alt="Product Image"/>
+      <Info>
+        <Icon onClick={handleLinkClick}>
+          <RemoveShoppingCart />
+        </Icon>      
+        <Icon>
+          <SearchOutlined />
+        </Icon>
+        <Icon>
+          <LocalShipping />
+        </Icon>
+      </Info>
+    </Container>
+  );
 }

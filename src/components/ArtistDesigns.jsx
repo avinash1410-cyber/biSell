@@ -1,11 +1,9 @@
-
 import { useParams } from 'react-router-dom';
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import Product from "./Product";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-
 
 const Container = styled.div`
     padding: 20px;
@@ -14,13 +12,10 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-
-
 function ArtistDesigns(){
   const [designs, setDesigns] = useState([]);
-  const{id}=useParams();
-  console.log(id);
-
+  const { id } = useParams();
+  
   useEffect(()=>{
     axios.get(`https://avinash8654340.pythonanywhere.com/artist/${id}/designs`)
     .then((res)=>{
@@ -29,9 +24,7 @@ function ArtistDesigns(){
     }).catch((err)=>{
         console.log(err);
     })
-  },[]);
-
-
+  },[id]); // Include id in the dependency array
 
   return (
     <>
@@ -43,7 +36,6 @@ function ArtistDesigns(){
     </Container>
     </>
   );
-
 }
 
 export default ArtistDesigns;

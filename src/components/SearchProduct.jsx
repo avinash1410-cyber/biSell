@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link,useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 import Product from './Product';
 import styled from "styled-components";
 import Navbar from './Navbar';
-
-
-
 
 const Container = styled.div`
     padding: 20px;
@@ -15,13 +12,8 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-
-
-
-
-
 export default function SearchProduct() {
-  const{id}=useParams();
+  const { id } = useParams();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -35,16 +27,16 @@ export default function SearchProduct() {
       console.log(err);
     });
     },
-    []);
+    [id]); // Include id in the dependency array
 
     return (
       <div>
-<Navbar/>
-<Container>
-     {products.map((item) => (
-      <Product item={item} key={item.id} name={item.name}  />
-      ))}
-    </Container>      </div>
- 
+        <Navbar/>
+        <Container>
+          {products.map((item) => (
+            <Product item={item} key={item.id} name={item.name}  />
+          ))}
+        </Container>
+      </div>
     );
 }

@@ -1,14 +1,10 @@
-import React, {  useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../utils/useAxios";
-
-import { Typography, Box, MenuItem, IconButton } from '@mui/material';
+import { Typography, Box, IconButton } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styled from 'styled-components';
 import MovingText from "../components/MovingText";
-
-
-
 
 const Container = styled(Box)`
   display: flex;
@@ -25,10 +21,8 @@ const Text = styled(Typography)`
   color: #333;
 `;
 
-
 function ProtectedPage() {
   const [res, setRes] = useState("");
-  const [anchorEl, setAnchorEl] = useState(null);
   const api = useAxios();
   const navigate = useNavigate();
 
@@ -48,13 +42,8 @@ function ProtectedPage() {
   }, []);
 
   const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    // Your code for handling menu open
   };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
 
   return (
     <Container>

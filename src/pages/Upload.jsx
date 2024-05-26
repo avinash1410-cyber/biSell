@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import {mobile} from "../responsive";
-
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100vw;
@@ -56,12 +54,6 @@ const Button = styled.button`
   margin-bottom: 10px;
 `;
 
-
-
-
-
-
-
 function Upload({ artistValue }) {
   const [designData, setDesignData] = useState({ image: null, artist: artistValue, design: '' });
 
@@ -92,21 +84,21 @@ function Upload({ artistValue }) {
   };
 
   return (
-<>
-<Navbar/>
-    <Container>
-    <Wrapper>
-      <Title>ADD DESGN</Title>
-      <Form>
-      <Input type="File" accept="image/*" onChange={handleFileChange} placeholder="Image" />
-      <Input type="text" name="design" placeholder="Design" onChange={handleChange} />
-        <Button onClick={handleUpload}>LOGIN</Button>
-      </Form>
-      <Link to="/">Home</Link>
-    </Wrapper>
-  </Container>
+    <>
+      <Navbar />
+      <Container>
+        <Wrapper>
+          <Title>ADD DESIGN</Title>
+          <Form>
+            <Input type="file" accept="image/*" onChange={handleFileChange} placeholder="Image" />
+            <Input type="text" name="design" placeholder="Design" onChange={handleChange} />
+            <Button onClick={handleUpload}>UPLOAD</Button>
+          </Form>
+          <Link to="/">Home</Link>
+        </Wrapper>
+      </Container>
     </>
-     );
+  );
 }
 
 export default Upload;

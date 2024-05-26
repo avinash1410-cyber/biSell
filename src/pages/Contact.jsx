@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
 
 const Container = styled.div`
   width: 100vw;
@@ -46,56 +44,13 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Agreement = styled.span`
-  font-size: 12px;
-  margin: 20px 0px;
-`;
-
-const Button = styled.button`
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-`;
-
 const Contact = () => {
-
   const [username, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [phone, setPhone] = useState();
-  const [add,setAddress] = useState();
+  const [add, setAddress] = useState();
   const nav = useNavigate();
-
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    console.log(username);
-    console.log(password);
-    axios.post('https://avinash8654340.pythonanywhere.com/account/register/',{"username":username,"password":password,"phone":phone,"add":add,"email":email})
-    .then(res => {
-      if(res.data.message==="Registration done"){
-        nav("/login");
-      }
-      else{
-        nav("/register");
-      }
-    });
-  }
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <Container>
@@ -107,8 +62,8 @@ const Contact = () => {
           <Input type="email" onChange={e => setEmail(e.target.value)} placeholder="Designer Email Id" />
           <Input type="password" onChange={e => setPassword(e.target.value)} placeholder="Your Email Id" />
           <Input type="text" onChange={e => setPhone(e.target.value)} placeholder="Your Contact No" />
-            <p>Your Message will be send to designer in sort period of time</p>
-          <br></br>
+          <p>Your Message will be send to designer in short period of time</p>
+          <br />
           <Link to="/"><h1>Submit</h1></Link>
         </Form>
       </Wrapper>

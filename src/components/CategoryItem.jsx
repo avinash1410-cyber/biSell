@@ -28,7 +28,7 @@ const Container = styled.div`
   background-color: #f5fbfd;
   position: relative;
 
-  &:hover ${Info}{
+  &:hover ${Info} {
     opacity: 1;
   }
 `;
@@ -56,21 +56,26 @@ const Icon = styled.div`
   justify-content: center;
   margin: 10px;
   transition: all 0.5s ease;
+
   &:hover {
     background-color: #e9f5f5;
     transform: scale(1.1);
   }
 `;
 
-const CategoryItem = ({item}) => {
+const CategoryItem = ({ item }) => {
   return (
-
-
     <Link to={`/category/${item.id}`}>
       <Container>
-      <Circle />
-      <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
-    </Container>
+        <Circle />
+        <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item.image}`} alt="Product Image" />
+        <Info>
+          <Icon>
+            {/* You can add an icon here, e.g., a font-awesome or material-ui icon */}
+            <i className="fas fa-search"></i>
+          </Icon>
+        </Info>
+      </Container>
     </Link>
   );
 };

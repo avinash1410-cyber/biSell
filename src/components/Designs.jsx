@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from "styled-components";
 import Product from "./Product";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-
 
 const Container = styled.div`
     padding: 20px;
@@ -15,11 +13,8 @@ const Container = styled.div`
 
 const Designs = () => {
   const [products, setProducts] = useState([]);
-useEffect(() => {
-    fetchProducts();
-  }, []);
 
-const fetchProducts = () => {
+  const fetchProducts = useCallback(() => {
     axios
       .get('https://avinash8654340.pythonanywhere.com/design/')
       .then((res) => {
@@ -30,23 +25,22 @@ const fetchProducts = () => {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, []);
 
-
-
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   return (
     <div>
-      <h1>Deisgns By Our Artist</h1>
-    <Container>
-      {
-      products.map((item) => (
-        <Product item={item} key={item.id} name={item.name}  />
-      ))}
-    </Container>
-    <Link to="/product">see more</Link>
+      <h1>Designs By Our Artist</h1>
+      <Container>
+        {products.map((item) => (
+          <Product item={item} key={item.id} name={item.name} />
+        ))}
+      </Container>
+      <Link to="/product">see more</Link>
     </div>
-
   );
 };
 

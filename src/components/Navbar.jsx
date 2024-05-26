@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { ShoppingCartOutlined } from "@material-ui/icons";
+import { ShoppingCartOutlined, ShoppingBasket, Palette } from "@material-ui/icons";
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -100,8 +100,6 @@ const Navbar = () => {
       console.error('Error searching:', error);
     }
   };
-
-
 
   const handleClose = () => {
     setAnchorEl(null);

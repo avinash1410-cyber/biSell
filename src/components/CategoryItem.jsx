@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -8,7 +9,7 @@ const Info = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.7); /* Darker background color for better contrast */
   z-index: 3;
   display: flex;
   align-items: center;
@@ -33,47 +34,26 @@ const Container = styled.div`
   }
 `;
 
-const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
-`;
-
 const Image = styled.img`
   height: 75%;
   z-index: 2;
 `;
 
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  transition: all 0.5s ease;
-
-  &:hover {
-    background-color: #e9f5f5;
-    transform: scale(1.1);
-  }
+const Text = styled.span`
+  color: #fff; /* White text color for better visibility */
+  font-size: 24px; /* Increased font size for better readability */
+  font-weight: bold; /* Bold font weight for emphasis */
+  text-transform: uppercase; /* Uppercase text for style */
+  letter-spacing: 2px; /* Increased letter spacing for better legibility */
 `;
 
 const CategoryItem = ({ item }) => {
   return (
     <Link to={`/category/${item.id}`}>
       <Container>
-        <Circle />
         <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item.image}`} alt="Product Image" />
         <Info>
-          <Icon>
-            {/* You can add an icon here, e.g., a font-awesome or material-ui icon */}
-            <i className="fas fa-search"></i>
-          </Icon>
+          <Text>{item.name}</Text>
         </Info>
       </Container>
     </Link>

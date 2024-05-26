@@ -46,12 +46,23 @@ const Image = styled.img`
   z-index: 2;
 `;
 
+const Text = styled.span`
+  color: #fff; /* White text color for better visibility */
+  font-size: 24px; /* Increased font size for better readability */
+  font-weight: bold; /* Bold font weight for emphasis */
+  text-transform: uppercase; /* Uppercase text for style */
+  letter-spacing: 2px; /* Increased letter spacing for better legibility */
+`;
+
 const ArtistItem = ({ item }) => {
   return (
     <Link to={`/artist/${item.id}`}>
       <Container>
         <Circle />
         <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
+        <Info>
+          <Text>{item.cust.user.username}</Text>
+        </Info>
       </Container>
     </Link>
   );

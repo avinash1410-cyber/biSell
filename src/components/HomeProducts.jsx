@@ -10,7 +10,7 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-const Products = () => {
+const HomeProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,8 @@ const Products = () => {
         .get('https://avinash8654340.pythonanywhere.com/')
         .then((res) => {
           console.log(res);
-          setProducts(res.data);
+          const firstThreeProducts = res.data.slice(0, 3);
+          setProducts(firstThreeProducts);
           console.log(res.data); 
         })
         .catch((err) => {
@@ -41,4 +42,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default HomeProducts;

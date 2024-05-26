@@ -1,11 +1,8 @@
 import{React,useState,useEffect} from "react"
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import ArtistItem from "./ArtistItem";
+import CategoryItem from "./CategoryItem";
 import axios from "axios";
-
-
-
 
 const Container = styled.div`
   display: flex;
@@ -15,25 +12,29 @@ const Container = styled.div`
 
 `;
 
-const Artists = () => {
+const HomeCategories = () => {
 
   const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
-    axios.get("https://avinash8654340.pythonanywhere.com/artist/")
+    axios.get("https://avinash8654340.pythonanywhere.com/category/available/")
     .then((res)=>{
-      setCategories(res.data);
+        console.log(res);
+        const firstThreeProducts = res.data.slice(0, 3);
+      setCategories(firstThreeProducts);
     }).catch((err)=>{
         console.log(err);
     })
   },[]);
 
+
+
   
   return (
     <div>
-        <Container>      
+    <Container>      
       {categories.map((item) => (
-        <ArtistItem item={item} key={item.id} />
+        <CategoryItem item={item} key={item.id} />
       ))}
     </Container>
     <br></br>
@@ -41,4 +42,4 @@ const Artists = () => {
   );
 };
 
-export default Artists;
+export default HomeCategories;

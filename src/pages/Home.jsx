@@ -1,18 +1,18 @@
 import React from "react";
 import Announcement from "../components/Announcement";
-import Categories from "../components/Categories";
+import HomeCategories from "../components/HomeCategories";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
-import Products from "../components/Products";
+import HomeProducts from "../components/HomeProducts";
 import Slider from "../components/Slider";
 
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import ProtectedPage from "../views/ProtectedPage";
-import Artists from "../components/Artists";
-
+import HomeArtists from "../components/HomeArtists";
+import { Link } from "react-router-dom"
 
 
 const Home = () => {
@@ -25,9 +25,12 @@ const Home = () => {
       <Announcement />
       <Navbar />
       <Slider />
-      <Categories />
-      <Products/>
-      <Artists/>
+      <Link to={"/"}><span style={{ fontWeight: "bold" }}>Categories</span></Link>
+      <HomeCategories />
+      <Link to={"/"}><span style={{ fontWeight: "bold" }}>Products</span></Link>
+      <HomeProducts/>
+      <Link to={"/"}><span style={{ fontWeight: "bold" }}>Artist</span></Link>
+      <HomeArtists/>
       <Newsletter/>
       <Footer/>
     </div>

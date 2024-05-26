@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -70,6 +69,7 @@ const PasswordInput = styled(Input)`
 `;
 
 const ToggleButton = styled.button`
+  type: button;  // Add this line
   margin-left: 10px;
   padding: 10px;
   border: none;
@@ -127,25 +127,21 @@ const Register = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
     axios.post('https://avinash8654340.pythonanywhere.com/account/register/',{"username":username,"password":password,"phone":phone,"add":address,"email":email})
     .then(res => {
       if(res.data.message==="Registration done"){
         navigate("/login");
-      }
-      else{
+      } else {
         navigate("/register");
       }
     });
   }
 
-
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" />
           <Input type="text" value={username} onChange={(e) => setUserName(e.target.value)} placeholder="Username" />
           <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
@@ -156,7 +152,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
-            <ToggleButton onClick={() => setShowPassword(!showPassword)}>
+            <ToggleButton type="button" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? "Hide" : "Show"}
             </ToggleButton>
           </PasswordContainer>
@@ -165,7 +161,7 @@ const Register = () => {
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button type="submit">Submit</Button>
           <LoginLink>
             Already have an account? <a href="/login">Login here</a>
           </LoginLink>

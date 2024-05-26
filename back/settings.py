@@ -14,6 +14,16 @@ import os
 from datetime import timedelta
 from pathlib import Path
 import cloudinary
+
+
+cloudinary.config(
+  cloud_name = "dh9lxhvqt", 
+  api_key = "715576226627654", 
+  api_secret = "QXvgXes5sbid_YhStDN5W88uW38",
+  api_proxy = "http://proxy.server:3128"
+)
+
+
 import cloudinary.uploader
 import cloudinary.api
 
@@ -223,9 +233,3 @@ PAYTM_CALLBACK_URL = "/paytm/response/"
 if DEBUG:
     PAYTM_WEBSITE = 'WEB_STAGING'
     HOST_URL = 'http://localhost:8080'
-
-cloudinary.config(
-  cloud_name = "dh9lxhvqt", 
-  api_key = "715576226627654", 
-  api_secret = "QXvgXes5sbid_YhStDN5W88uW38"
-)

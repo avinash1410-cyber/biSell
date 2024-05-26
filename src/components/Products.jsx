@@ -29,7 +29,7 @@ const Products = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, []); // No dependency needed here
+  }, [fetchProducts]); // No dependency needed here
 
   return (
     <div>

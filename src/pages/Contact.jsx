@@ -43,7 +43,7 @@ const Input = styled.input`
 `;
 
 const Contact = () => {
-  const [address, setAddress] = useState();
+  const [setAddress] = useState();
 
   return (
     <Container>

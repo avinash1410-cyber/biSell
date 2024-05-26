@@ -6,8 +6,8 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import axios from "axios";
-import React, { useState, useEffect, useContext } from 'react';
-import AuthContext from "../context/AuthContext";
+import React, { useState, useEffect } from 'react';
+
 
 const Container = styled.div``;
 

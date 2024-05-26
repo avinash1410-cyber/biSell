@@ -1,5 +1,5 @@
 import { Add, Remove } from "@material-ui/icons";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -7,10 +7,8 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import axios from "axios";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import useAxios from "../utils/useAxios";
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
 
 const Container = styled.div``;
 
@@ -119,7 +117,6 @@ const Button = styled.button`
 function ViewProduct() {
   const [Item, setItem] = useState(0);
   const { id } = useParams();
-  const api = useAxios();
   const nav = useNavigate();
   const [product, setProduct] = useState(null);
   const [defaultImage, setDefaultImage] = useState(null);
@@ -134,7 +131,7 @@ function ViewProduct() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   function incr() {
     let item = Item + 1;
@@ -147,7 +144,6 @@ function ViewProduct() {
   }
 
   function addcart() {
-    const res = api.get(`/cart/addData/${id}`);
     nav("/cart");
   }
 

@@ -14,10 +14,6 @@ const Container = styled.div`
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   const fetchProducts = () => {
     axios
       .get('https://avinash8654340.pythonanywhere.com/')
@@ -30,6 +26,10 @@ const Products = () => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []); // No dependency needed here
 
   return (
     <div>

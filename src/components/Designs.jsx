@@ -20,7 +20,7 @@ const Designs = () => {
       .then((res) => {
         console.log(res);
         setProducts(res.data);
-        console.log(products); 
+        console.log(res.data); // Use res.data instead of products
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +29,7 @@ const Designs = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
+  }, [fetchProducts]); // Include fetchProducts in the dependency array
 
   return (
     <div>

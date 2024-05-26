@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -45,12 +43,7 @@ const Input = styled.input`
 `;
 
 const Contact = () => {
-  const [username, setUserName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [phone, setPhone] = useState();
-  const [add, setAddress] = useState();
-  const nav = useNavigate();
+  const [address, setAddress] = useState();
 
   return (
     <Container>
@@ -58,11 +51,11 @@ const Contact = () => {
         <Title>Send Your Message</Title>
         <Form>
           <Input type="text" onChange={e => setAddress(e.target.value)} placeholder="Your Message" />
-          <Input type="text" onChange={e => setUserName(e.target.value)} placeholder="Your Name" />
-          <Input type="email" onChange={e => setEmail(e.target.value)} placeholder="Designer Email Id" />
-          <Input type="password" onChange={e => setPassword(e.target.value)} placeholder="Your Email Id" />
-          <Input type="text" onChange={e => setPhone(e.target.value)} placeholder="Your Contact No" />
-          <p>Your Message will be send to designer in short period of time</p>
+          <Input type="text" placeholder="Your Name" />
+          <Input type="email" placeholder="Designer Email Id" />
+          <Input type="password" placeholder="Your Email Id" />
+          <Input type="text" placeholder="Your Contact No" />
+          <p>Your Message will be sent to the designer in a short period of time.</p>
           <br />
           <Link to="/"><h1>Submit</h1></Link>
         </Form>

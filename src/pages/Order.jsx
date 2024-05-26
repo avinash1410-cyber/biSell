@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react';
-import axios from "axios";
 import useAxios from '../utils/useAxios';
 import OrderItems from './OrderItems';
 import styled from "styled-components";
@@ -19,16 +18,12 @@ export default function Order() {
   useEffect(() => {
     async function fetchData() {
       try {
-        await api.get("/order/").then((res) => {
-          console.log(res);
-          setProducts(res.data);
-          console.log(products);
-        })
-          .catch((err) => {
-            console.log(err);
-          });
-      } catch {
-        console.log("Something went wrong");
+        const res = await api.get("/order/");
+        console.log(res);
+        setProducts(res.data);
+        console.log(products);
+      } catch (err) {
+        console.log(err);
       }
     };
     fetchData();
@@ -44,8 +39,6 @@ export default function Order() {
           <OrderItems item={item} key={item.id} name={item.name} />
         ))}
       </Container>
-
     </div>
-
   );
 }

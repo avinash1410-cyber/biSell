@@ -23,9 +23,11 @@ import ProtectedPage from "./views/ProtectedPage";
 import { PaytmButton } from "./components/PaytmButton";
 import Contact from "./pages/Contact";
 import Upload from "./pages/Upload";
-
-
 import AnotherPage from "./pages/AnotherPage";
+
+
+
+
 
 
 const App = () => {

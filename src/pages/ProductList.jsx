@@ -6,35 +6,54 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: #f5f5f5; /* Light background for better contrast */
+`;
 
 const Title = styled.h1`
   margin: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333; /* Darker color for the title */
+  text-align: center; /* Center the title */
 `;
 
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff; /* White background for filter section */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const Filter = styled.div`
+  display: flex;
+  align-items: center;
   margin: 20px;
-  ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
+  ${mobile({ width: "100%", justifyContent: "space-between" })}
 `;
 
 const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
   margin-right: 20px;
-  ${mobile({ marginRight: "0px" })}
+  color: #555; /* Softer color for filter text */
+  ${mobile({ marginRight: "10px", fontSize: "18px" })}
 `;
 
 const Select = styled.select`
   padding: 10px;
   margin-right: 20px;
-  ${mobile({ margin: "10px 0px" })}
+  border: 1px solid #ddd; /* Light border */
+  background-color: #fff; /* White background for select */
+  color: #555; /* Softer color for select text */
+  ${mobile({ margin: "10px 0px", width: "100%" })}
 `;
-const Option = styled.option``;
+const Option = styled.option`
+  color: #333; /* Darker color for options */
+`;
 
 const ProductList = () => {
   return (

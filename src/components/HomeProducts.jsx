@@ -19,7 +19,7 @@ const HomeProducts = () => {
         .get('https://avinash8654340.pythonanywhere.com/')
         .then((res) => {
           console.log(res);
-          const firstThreeProducts = res.data.slice(0, 3);
+          const firstThreeProducts = res.data.slice(0, 8);
           setProducts(firstThreeProducts);
           console.log(res.data); 
         })

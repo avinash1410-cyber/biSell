@@ -25,11 +25,11 @@ const Home = () => {
       <Announcement />
       <Navbar />
       <Slider />
-      <Link to={"/"}><span style={{ fontWeight: "bold" }}>Categories</span></Link>
+      <Link to={"/category"}><span style={{ fontWeight: "bold" }}>Categories</span></Link>
       <HomeCategories />
-      <Link to={"/"}><span style={{ fontWeight: "bold" }}>Products</span></Link>
+      <Link to={"/product"}><span style={{ fontWeight: "bold" }}>Products</span></Link>
       <HomeProducts/>
-      <Link to={"/"}><span style={{ fontWeight: "bold" }}>Artist</span></Link>
+      <Link to={"/artist"}><span style={{ fontWeight: "bold" }}>Artist</span></Link>
       <HomeArtists/>
       <Newsletter/>
       <Footer/>

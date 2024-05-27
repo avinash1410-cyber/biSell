@@ -1,14 +1,24 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import useAxios from '../utils/useAxios';
 import OrderItems from './OrderItems';
 import styled from "styled-components";
 import Navbar from '../components/Navbar';
 
+// Styled components
 const Container = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+const Heading = styled.h1`
+  margin: 20px;
+  text-align: center;
+`;
+
+const OrderContainer = styled.div`
+  padding: 20px;
 `;
 
 export default function Order() {
@@ -19,26 +29,23 @@ export default function Order() {
     async function fetchData() {
       try {
         const res = await api.get("/order/");
-        console.log(res);
         setProducts(res.data);
-        console.log(products);
       } catch (err) {
         console.log(err);
       }
-    };
+    }
     fetchData();
-  }, [api, products]); // Include api and products in the dependency array
+  }, [api]); // Removed 'products' from dependency array to prevent infinite loop
 
   return (
-    <div>
-      <h1>Your Orders</h1>
+    <OrderContainer>
       <Navbar />
+      <Heading>Your Orders</Heading>
       <Container>
-        {products.map((item) =>
-        (
+        {products.map((item) => (
           <OrderItems item={item} key={item.id} name={item.name} />
         ))}
       </Container>
-    </div>
+    </OrderContainer>
   );
 }

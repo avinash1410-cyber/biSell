@@ -93,9 +93,8 @@ const Navbar = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://avinash8654340.pythonanywhere.com/account/search/', { key: searchTerm });
-      console.log(response.data);
-      navigate('/search', { state: { results: response.data } });
+      const response = await axios.get(`https://avinash8654340.pythonanywhere.com/search/${searchTerm}`);
+      navigate('/search', { state: { searchResults: response.data } });
     } catch (error) {
       console.error('Error searching:', error);
     }

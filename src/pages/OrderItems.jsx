@@ -1,11 +1,12 @@
 import React from 'react';
 import {
   SearchOutlined,
-  LocalShipping,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import useAxios from '../utils/useAxios';
+import { useNavigate } from "react-router-dom";
 
 
 const Info = styled.div`
@@ -69,7 +70,27 @@ const Icon = styled.div`
   }
 `;
 
+
+
+
+
 export default function OrderItems({item}) {
+
+  const api = useAxios();
+  const nav = useNavigate();
+
+
+  async function handleLinkClick() {
+    const res=await api.get(`/order/remove/${item.id}/`);
+    alert(res.data.message);
+    nav("/order");
+    window.location.reload();
+  }
+
+
+
+
+
   return (
 
 <>
@@ -83,8 +104,8 @@ export default function OrderItems({item}) {
       <Icon>
         <SearchOutlined />
       </Icon>
-      <Icon>
-      <Link to={`/product/${item.id}`}> <LocalShipping /></Link>
+      <Icon onClick={handleLinkClick}>
+        <CancelPresentationIcon />
       </Icon>
     </Info>
   </Container>  

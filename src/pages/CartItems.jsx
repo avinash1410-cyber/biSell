@@ -74,9 +74,10 @@ export default function CartItems({ item }) {
   const nav = useNavigate();
 
   async function handleLinkClick() {
-    console.log("Request for delete");
-    await api.get(`/cart/remove/${item.id}/`);
+    const res=await api.get(`/cart/remove/${item.id}/`);
+    alert(res.data.message);
     nav("/cart");
+    window.location.reload();
   }
 
   return (

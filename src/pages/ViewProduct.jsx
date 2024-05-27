@@ -6,8 +6,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import axios from "axios";
 import React, { useState, useEffect } from "react";
+import useApiRequest from '../components/useApiRequest'; // Assuming you have a custom hook for API requests
 
 const Container = styled.div``;
 
@@ -154,50 +154,54 @@ function ViewProduct() {
   const [thumbnails, setThumbnails] = useState([]);
   const [zoomStyle, setZoomStyle] = useState({ display: "none" });
   const [zoomedImageStyle, setZoomedImageStyle] = useState({});
+  const { hitRequest } = useApiRequest();
 
   useEffect(() => {
-    axios
-      .get(`https://avinash8654340.pythonanywhere.com/${id}`)
-      .then((res) => {
-        setProduct(res.data);
-        setDefaultImage(res.data.image);
+    async function fetchData() {
+      try {
+        const res = await hitRequest(`https://avinash8654340.pythonanywhere.com/${id}`);
+        setProduct(res);
+        setDefaultImage(res.image);
         setThumbnails([
-          res.data.image1,
-          res.data.image2,
-          res.data.image3,
-          res.data.image4
+          res.image1,
+          res.image2,
+          res.image3,
+          res.image4
         ]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    }
+  
+    fetchData();
+  }, [hitRequest, id]); // Include hitRequest and id in the dependency array
+   // Include hitRequest and id in the dependency array
+  
 
-  function incr() {
-    let item = Item + 1;
-    setItem(item);
-  }
 
-  function dcr() {
-    let item = Math.max(Item - 1, 0);
-    setItem(item);
-  }
+  const incr = () => setItem(Item + 1);
 
-  function addcart() {
-    navigate("/cart");
-  }
+  const dcr = () => setItem(Math.max(Item - 1, 0));
 
-  function addPay() {
+  const addcart = async () => {
+    try {
+      const res = await hitRequest(`/cart/addData/${id}`, 'GET');
+      alert(res.Message);
+      navigate("/cart");
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  };
+
+  const addPay = () => {
     navigate(`/pay/${id}`, {
-      state: { productid: id, amount: product.price, product_name: product.name },
+      state: { productid: id, amount: product?.price, product_name: product?.name },
     });
-  }
+  };
 
-  function changeMainImage(src) {
-    setDefaultImage(src);
-  }
+  const changeMainImage = (src) => setDefaultImage(src);
 
-  function handleMouseMove(e) {
+  const handleMouseMove = (e) => {
     const { left, top, width, height } = e.target.getBoundingClientRect();
     const x = ((e.clientX - left) / width) * 100;
     const y = ((e.clientY - top) / height) * 100;
@@ -213,11 +217,10 @@ function ViewProduct() {
       left: `${-x * 4}%`,
       top: `${-y * 4}%`,
     });
-  }
+  };
 
-  function handleMouseLeave() {
-    setZoomStyle({ display: "none" });
-  }
+
+  const handleMouseLeave = () => setZoomStyle({ display: "none" });
 
   return (
     <Container>
@@ -250,23 +253,13 @@ function ViewProduct() {
             />
           </ImgContainer>
           <InfoContainer>
-            <Title>{product === null ? "loading" : product.name}</Title>
-            <Desc>
-              About: {product && product.description ? product.description : "N/A"}
-            </Desc>
-            <Desc>
-              Artist: {product && product.artist ? product.artist.id : "N/A"}
-            </Desc>
-            <Desc>
-              Design: {product && product.design ? product.design.id : "N/A"}
-            </Desc>
-            <Desc>
-              Category: {product && product.cat ? product.cat.id : "N/A"}
-            </Desc>
-            <Desc>
-              Size: {product === null ? "loading" : product.size}
-            </Desc>
-            <Price>$ {product === null ? "loading" : product.price}</Price>
+            <Title>{product ? product.name : "Loading..."}</Title>
+            <Desc>About: {product?.description || "N/A"}</Desc>
+            <Desc>Artist: {product?.artist?.id || "N/A"}</Desc>
+            <Desc>Design: {product?.design?.id || "N/A"}</Desc>
+            <Desc>Category: {product?.cat?.id || "N/A"}</Desc>
+            <Desc>Size: {product ? product.size : "Loading..."}</Desc>
+            <Price>$ {product ? product.price : "Loading..."}</Price>
             <AddContainer>
               <AmountContainer>
                 <Remove onClick={dcr} />

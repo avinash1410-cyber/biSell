@@ -1,6 +1,10 @@
-import { SearchOutlined, LocalShipping, ShoppingCartOutlined } from "@material-ui/icons";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAxios from '../utils/useAxios';
+import { SearchOutlined, LocalShipping, ShoppingCartOutlined } from "@material-ui/icons";
+
+
 
 const Info = styled.div`
   opacity: 0;
@@ -12,8 +16,8 @@ const Info = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 3;
   display: flex;
-  flex-direction: column; /* Added */
-  align-items: center; /* Added */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
   cursor: pointer;
@@ -65,26 +69,45 @@ const Icon = styled.div`
 `;
 
 const ProductName = styled.span`
-  color: white; /* Added */
-  font-size: 18px; /* Added */
+  color: white;
+  font-size: 18px;
 `;
 
 const Product = ({ item }) => {
+  const api = useAxios();
+  const nav = useNavigate();
+
+  async function addToCart() {
+    const res = await api.get(`/cart/addData/${item.id}/`);
+    console.log(res)
+    alert(res.data.message);
+    nav("/cart");
+    window.location.reload();
+  }
+
+  async function bookOrder() {
+    const res = await api.get(`/order/addData/${item.id}/`);
+    console.log(res)
+    alert(res.Message);
+    nav("/order");
+    window.location.reload();
+  }
+
   return (
     <Link to={`/product/${item.id}`}>
       <Container>
         <Circle />
         <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
         <Info>
-          <ProductName>{item.name}</ProductName> {/* Added */}
-          <Icon>
-            <ShoppingCartOutlined />
+          <ProductName>{item.name}</ProductName>
+          <Icon onClick={addToCart}>
+            <ShoppingCartOutlined/>
           </Icon>
           <Icon>
-            <SearchOutlined />
+            <SearchOutlined/>
           </Icon>
-          <Icon>
-            <LocalShipping />
+          <Icon onClick={bookOrder}>
+            <LocalShipping/>
           </Icon>
         </Info>
       </Container>

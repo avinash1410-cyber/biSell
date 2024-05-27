@@ -8,6 +8,10 @@ import AuthContext from "../context/AuthContext";
 
 const baseURL = "https://avinash8654340.pythonanywhere.com/";
 
+
+// const baseURL ="http://localhost:8000/"
+
+
 const useAxios = () => {
   const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
 

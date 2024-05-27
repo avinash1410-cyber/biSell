@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import axios from 'axios';
 import Product from './Product';
 import styled from "styled-components";
@@ -14,29 +14,34 @@ const Container = styled.div`
 
 export default function SearchProduct() {
   const { id } = useParams();
-  const [products, setProducts] = useState([]);
+  const location = useLocation();
+  const [products, setProducts] = useState(location.state?.searchResults || []);
 
   useEffect(() => {
-    axios
-    .get(`https://avinash8654340.pythonanywhere.com/search/${id}`)
-    .then((res) => {
-      console.log(res.data);
-      setProducts(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    },
-    [id]); // Include id in the dependency array
+    if (!location.state?.searchResults) {
+      // If there are no search results passed, fetch the data using the id from params
+      const fetchProducts = async () => {
+        try {
+          const response = await axios.get(`https://avinash8654340.pythonanywhere.com/products/${id}`);
+          setProducts(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error fetching product data:', error);
+        }
+      };
 
-    return (
-      <div>
-        <Navbar/>
-        <Container>
-          {products.map((item) => (
-            <Product item={item} key={item.id} name={item.name}  />
-          ))}
-        </Container>
-      </div>
-    );
+      fetchProducts();
+    }
+  }, [id, location.state]);
+
+  return (
+    <div>
+      <Navbar/>
+      <Container>
+        {products.map((item) => (
+          <Product item={item} key={item.id} name={item.name} />
+        ))}
+      </Container>
+    </div>
+  );
 }

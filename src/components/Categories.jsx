@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
+import Navbar from "./Navbar";
+import ProtectedPage from "../views/ProtectedPage";
+import Announcement from "./Announcement";
 
 const Container = styled.div`
   display: flex;
@@ -37,6 +40,8 @@ const Categories = () => {
 
   return (
     <div>
+      <Announcement></Announcement>
+      <Navbar></Navbar>
       <Title>Categories</Title>
       <Container>
         {categories.map((item) => (

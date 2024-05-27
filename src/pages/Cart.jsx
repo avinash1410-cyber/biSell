@@ -1,15 +1,25 @@
-import { React, useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useAxios from '../utils/useAxios';
 import CartItems from './CartItems';
 import AuthContext from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import styled from "styled-components";
 
+// Styled components
 const Container = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+const Heading = styled.h1`
+  margin: 20px;
+  text-align: center;
+`;
+
+const CartContainer = styled.div`
+  padding: 20px;
 `;
 
 export default function Cart() {
@@ -20,27 +30,27 @@ export default function Cart() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await api.get("/cart/");
-        console.log(res);
-        console.log(user);
-        setProducts(res.data);
-        console.log(products);
+        if (user) {
+          const res = await api.get("/cart/");
+          setProducts(res.data);
+        }
       } catch (err) {
         console.log(err);
       }
-    };
+    }
+
     fetchData();
-  }, [api, products, user]); // Include dependencies in the dependency array
+  }, [user, api]);
 
   return (
-    <div>
+    <CartContainer>
       <Navbar />
-      <h1>Your Products</h1>
+      <Heading>Your Products</Heading>
       <Container>
         {products.map((item) => (
           <CartItems item={item} key={item.id} name={item.name} />
         ))}
       </Container>
-    </div>
+    </CartContainer>
   );
-};
+}

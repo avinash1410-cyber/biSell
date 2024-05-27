@@ -37,7 +37,7 @@ const ImgContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 50%;
-  height: 400px;
+  height: 600px;
   background-color: #f8f8f8;
   border-radius: 10px;
   overflow: hidden;
@@ -71,6 +71,7 @@ const ZoomedImageContainer = styled.div`
   width: 150px;
   height: 150px;
   pointer-events: none;
+  background-color: white;
 `;
 
 const ZoomedImage = styled.img`
@@ -152,6 +153,7 @@ function ViewProduct() {
   const [defaultImage, setDefaultImage] = useState(null);
   const [thumbnails, setThumbnails] = useState([]);
   const [zoomStyle, setZoomStyle] = useState({ display: "none" });
+  const [zoomedImageStyle, setZoomedImageStyle] = useState({});
 
   useEffect(() => {
     axios
@@ -205,7 +207,11 @@ function ViewProduct() {
       left: `${e.clientX + 20}px`,
       top: `${e.clientY + 20}px`,
       transform: `translate(-50%, -50%)`,
-      backgroundPosition: `${x}% ${y}%`,
+    });
+
+    setZoomedImageStyle({
+      left: `${-x * 4}%`,
+      top: `${-y * 4}%`,
     });
   }
 
@@ -231,7 +237,10 @@ function ViewProduct() {
           </ThumbnailsContainer>
           <ImgContainer>
             <ZoomedImageContainer style={zoomStyle}>
-              <ZoomedImage src={`https://res.cloudinary.com/dh9lxhvqt/${defaultImage}`} />
+              <ZoomedImage
+                src={`https://res.cloudinary.com/dh9lxhvqt/${defaultImage}`}
+                style={zoomedImageStyle}
+              />
             </ZoomedImageContainer>
             <Image
               src={`https://res.cloudinary.com/dh9lxhvqt/${defaultImage}`}

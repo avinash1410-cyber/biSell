@@ -1,4 +1,3 @@
-import { SearchOutlined, LocalShipping, ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -48,48 +47,27 @@ const Image = styled.img`
   z-index: 2;
 `;
 
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  transition: all 0.5s ease;
-  &:hover {
-    background-color: #e9f5f5;
-    transform: scale(1.1);
-  }
-`;
-
 const ProductName = styled.span`
   color: white; /* Added */
   font-size: 18px; /* Added */
+  text-align: center; /* Added */
+  background-color: rgba(0, 0, 0, 0.5); /* Added */
+  padding: 10px; /* Added */
+  border-radius: 10px; /* Added */
 `;
 
-const Product = ({ item }) => {
+const DesignItem = ({ item,name }) => {
   return (
-    <Link to={`/product/${item.id}`}>
+    <Link to={`/design/${item.id}`}>
       <Container>
         <Circle />
         <Image src={`https://res.cloudinary.com/dh9lxhvqt/${item === null ? 'loading' : item.image}`} alt="Product Image"/>
         <Info>
-          <ProductName>{item.name}</ProductName> {/* Added */}
-          <Icon>
-            <ShoppingCartOutlined />
-          </Icon>
-          <Icon>
-            <SearchOutlined />
-          </Icon>
-          <Icon>
-            <LocalShipping />
-          </Icon>
+          <ProductName>{name}</ProductName> {/* Show the product name */}
         </Info>
       </Container>
     </Link>
   );
 };
 
-export default Product;
+export default DesignItem;

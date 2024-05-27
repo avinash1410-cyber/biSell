@@ -1,14 +1,27 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from "styled-components";
-import Product from "./Product";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from './Navbar';
+import Announcement from './Announcement';
+import DesignItem from './DesignItem';
+
+
+
 
 const Container = styled.div`
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+`;
+
+const Title = styled.h1`
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333; /* Darker color for the title */
+    text-align: center; /* Center the title */
 `;
 
 const Designs = () => {
@@ -33,15 +46,25 @@ const Designs = () => {
 
   return (
     <div>
-      <h1>Designs By Our Artist</h1>
+      <StyledNavbar />
+      <StyledAnnouncement />
+      <Title>Designs By Our Artist</Title>
       <Container>
         {products.map((item) => (
-          <Product item={item} key={item.id} name={item.name} />
+          <DesignItem item={item} key={item.id} name={item.design} />
         ))}
       </Container>
       <Link to="/product">see more</Link>
     </div>
   );
 };
+
+const StyledNavbar = styled(Navbar)`
+  background-color: #f5f5f5;
+`;
+
+const StyledAnnouncement = styled(Announcement)`
+  background-color: #f5f5f5;
+`;
 
 export default Designs;

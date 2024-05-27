@@ -24,6 +24,7 @@ import { PaytmButton } from "./components/PaytmButton";
 import Contact from "./pages/Contact";
 import Upload from "./pages/Upload";
 import AnotherPage from "./pages/AnotherPage";
+import DesignProduct from "./components/DesignProduct";
 
 
 
@@ -55,6 +56,7 @@ const App = () => {
 
 
       <Route path="designs/" element={<Designs/>} />
+      <Route path="design/:id" element={<DesignProduct/>} />
       <Route path="pay/:id" element={<PaytmButton/>} />
 
       

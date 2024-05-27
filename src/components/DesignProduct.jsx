@@ -7,7 +7,6 @@ import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import DesignItem from "../components/DesignItem"; // Import the DesignItem component
 
 const Container = styled.div``;
 
@@ -58,6 +57,11 @@ const Title = styled.h1`
   margin-bottom: 10px;
 `;
 
+const Detail = styled.p`
+  font-size: 18px;
+  margin: 5px 0;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   margin-top: 20px;
@@ -78,46 +82,15 @@ const Button = styled.button`
   }
 `;
 
-const DemosHeading = styled.h2`
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  text-align: center;
-`;
-
-
-
-
-const DesignsContainer = styled.div`
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-`;
-
-function ViewProduct() {
+function DesignProduct() {
   const { id } = useParams();
-  const [artist, setArtist] = useState(null);
-  const [designs, setDesigns] = useState([]);
+  const [design, setDesign] = useState(null);
 
   useEffect(() => {
-    // Fetch artist profile
     axios
-      .get(`https://avinash8654340.pythonanywhere.com/artist/${id}`)
+      .get(`https://avinash8654340.pythonanywhere.com/design/${id}`)
       .then((res) => {
-        setArtist(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    // Fetch designs by artist
-    axios
-      .get(`https://avinash8654340.pythonanywhere.com/design/?artist=${id}`)
-      .then((res) => {
-        setDesigns(res.data);
+        setDesign(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -130,24 +103,23 @@ function ViewProduct() {
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Link to={`/artist/${id}/designs`}>
+          <Link to={`/artist/${design?.artist}/designs`}>
             <Image
-              src={`https://res.cloudinary.com/dh9lxhvqt/${artist === null ? "loading" : artist.image}`}
-              alt="Artist Image"
+              src={`https://res.cloudinary.com/dh9lxhvqt/${design ? design.image : ""}`}
+              alt="Design Image"
             />
           </Link>
         </ImgContainer>
         <InfoContainer>
-          <Title>Name: {artist === null ? "loading" : artist.cust.user.username}</Title>
-          <Title>Contact No: {artist === null ? "loading" : artist.cust.phone}</Title>
-          <Title>Current City: {artist === null ? "loading" : artist.cust.add}</Title>
-          <Title>Buiseness Email Id: {artist === null ? "loading" : artist.cust.email}</Title>
+          <Title>Design: {design ? design.design : "loading"}</Title>
+          <Detail>ID: {design ? design.id : "loading"}</Detail>
+          <Detail>Artist ID: {design ? design.artist : "loading"}</Detail>
           <ButtonContainer>
             <Link to="/contact">
-              <Button>CONTACT</Button>
+              <Button>CONTACT OWNER</Button>
             </Link>
-            <Link to={`/artist/${id}/designs`}>
-              <Button>My Designs</Button>
+            <Link to={`/artist/${design?.artist}/designs`}>
+              <Button>Linked Products</Button>
             </Link>
             <Link to="/design/upload">
               <Button>Add Design</Button>
@@ -155,18 +127,10 @@ function ViewProduct() {
           </ButtonContainer>
         </InfoContainer>
       </Wrapper>
-      {/* Display designs */}
-      <DemosHeading>Here are some demos</DemosHeading>
-      <DesignsContainer>
-        {/* Use slice to limit the number of designs to 3 */}
-        {designs.slice(0, 3).map((design) => (
-          <DesignItem key={design.id} item={design} name={design.design} />
-        ))}
-      </DesignsContainer>
       <Newsletter />
       <Footer />
     </Container>
   );
 }
 
-export default ViewProduct;
+export default DesignProduct;

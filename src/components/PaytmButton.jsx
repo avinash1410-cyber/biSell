@@ -105,7 +105,7 @@ export function PaytmButton() {
 
   useEffect(() => {
     fetchData();
-  }, []); // Fetch user data on component mount
+  }); // Fetch user data on component mount
 
   const handleSuccess = (res) => {
     let keyArr = Object.keys(res);

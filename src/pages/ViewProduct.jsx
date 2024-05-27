@@ -174,8 +174,8 @@ function ViewProduct() {
     }
   
     fetchData();
-  }, [hitRequest, id]); // Include hitRequest and id in the dependency array
-   // Include hitRequest and id in the dependency array
+  });
+  
   
 
 

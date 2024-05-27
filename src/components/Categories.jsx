@@ -4,7 +4,6 @@ import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
 import Navbar from "./Navbar";
-import ProtectedPage from "../views/ProtectedPage";
 import Announcement from "./Announcement";
 
 const Container = styled.div`
@@ -36,7 +35,7 @@ const Categories = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
 
   return (
     <div>
